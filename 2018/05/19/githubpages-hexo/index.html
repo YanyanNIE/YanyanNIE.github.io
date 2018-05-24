@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-CN,fr-FR,en,default">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="Hello, this is a test line.">
+<meta name="description" content="Je suis toujours besoin de construire mon propre web site. Après la fin de mon stage, j’ai décidé d’étudier sur ça. Travailles de préparation:  Un compte de GitHub; Installation de Node.js et npm; Ins">
 <meta name="keywords" content="Hexo,GitHub Pages">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to build your personal web with GitHub Pages and Hexo">
+<meta property="og:title" content="comment construire votre web personnel avec GitHub Pages et Hexo">
 <meta property="og:url" content="http://yoursite.com/2018/05/19/githubpages-hexo/index.html">
 <meta property="og:site_name" content="Ninon&#39;s">
-<meta property="og:description" content="Hello, this is a test line.">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-19T13:35:01.769Z">
+<meta property="og:description" content="Je suis toujours besoin de construire mon propre web site. Après la fin de mon stage, j’ai décidé d’étudier sur ça. Travailles de préparation:  Un compte de GitHub; Installation de Node.js et npm; Ins">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/05/19/githubpages-hexo/hexo.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/19/githubpages-hexo/config_git.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/19/githubpages-hexo/contenu_github.png">
+<meta property="og:updated_time" content="2018-05-23T07:23:47.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to build your personal web with GitHub Pages and Hexo">
-<meta name="twitter:description" content="Hello, this is a test line.">
+<meta name="twitter:title" content="comment construire votre web personnel avec GitHub Pages et Hexo">
+<meta name="twitter:description" content="Je suis toujours besoin de construire mon propre web site. Après la fin de mon stage, j’ai décidé d’étudier sur ça. Travailles de préparation:  Un compte de GitHub; Installation de Node.js et npm; Ins">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/19/githubpages-hexo/hexo.png">
 
 
 
@@ -126,7 +130,7 @@
 
 
 
-  <title>How to build your personal web with GitHub Pages and Hexo | Ninon's</title>
+  <title>comment construire votre web personnel avec GitHub Pages et Hexo | Ninon's</title>
   
 
 
@@ -138,7 +142,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -186,7 +190,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -250,7 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">How to build your personal web with GitHub Pages and Hexo</h1>
+          <h1 class="post-title" itemprop="name headline">comment construire votre web personnel avec GitHub Pages et Hexo</h1>
         
 
         <div class="post-meta">
@@ -260,7 +264,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T15:31:49+02:00">
                 2018-05-19
@@ -322,13 +326,72 @@
       
 
       
-        <p>Hello, this is a test line.</p>
+        <p>Je suis toujours besoin de construire mon propre web site. Après la fin de mon stage, j’ai décidé d’étudier sur ça.</p>
+<p><strong>Travailles de préparation:</strong></p>
+<ul>
+<li>Un compte de GitHub;</li>
+<li>Installation de Node.js et npm;</li>
+<li>Installation de git.</li>
+</ul>
+<p>Environnements:</p>
+<ul>
+<li>Mac OS 10.13.x</li>
+<li>Node.js 10.0.0 <code>node -v</code></li>
+<li>npm 5.6.0 <code>npm -v</code></li>
+<li>git 2.15.1 (Apple Git-101) <code>git version</code></li>
+<li>hexo 3.7.1 <code>hexo version</code> ou <code>hexo -v</code></li>
+</ul>
+<h2 id="Creer-une-repository"><a href="#Creer-une-repository" class="headerlink" title="Créer une repository"></a>Créer une repository</h2><p>Créer une nouvelle repository avec le nom <code>USER_NAME.github.io</code>, où &lt;USER_NAME&gt; est ton nom d’utilisatuer de GitHub. Par exemple, mon nom d’utilisatuer de GitHub est de <code>YanyanNIE</code>, du coup il faut que je crée la repository avec le nom <code>YanyanNIE.github.io</code>.</p>
+<h2 id="Configuration-de-SSH-KEY"><a href="#Configuration-de-SSH-KEY" class="headerlink" title="Configuration de SSH KEY"></a>Configuration de SSH KEY</h2><p>Dans le terminal, taper <code>ssh -v</code> pour regarder la version de ssh, le résultat comme ci-dessous montre que ssh est déjà installé.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</span><br><span class="line">           [-D [bind_address:]port] [-E log_file] [-e escape_char]</span><br><span class="line">           [-F configfile] [-I pkcs11] [-i identity_file]</span><br><span class="line">           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]</span><br><span class="line">           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]</span><br><span class="line">           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]</span><br><span class="line">           [user@]hostname [command]</span><br></pre></td></tr></table></figure>
+<p>Si vous n’avez installé ssh, vous pouvez l’installer par la commande:</p>
+<p><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code></p>
+<p>avec contibuer à appuyer sur <strong>Entrée</strong></p>
+<p>Après l’installation, vous avez un fichier <code>.sh</code> sous votre compte d’ordinateur,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -a ~/.ssh</span><br><span class="line">id_rsa</span><br><span class="line">id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>Et votre ssh key est dans la fichier <code>id_rsa.pub</code>. Vous pouvez le copier et coller dans votre compte de GitHub.</p>
+<h2 id="Creer-votre-site-avec-Hexo"><a href="#Creer-votre-site-avec-Hexo" class="headerlink" title="Créer votre site avec Hexo"></a>Créer votre site avec Hexo</h2><h3 id="Installation-de-Hexo"><a href="#Installation-de-Hexo" class="headerlink" title="Installation de Hexo"></a>Installation de Hexo</h3><p>Utiliser la commande ci-dessous pour installer Hexo globalement:</p>
+<p><code>npm install -g hexo</code></p>
+<h3 id="Initialisation"><a href="#Initialisation" class="headerlink" title="Initialisation"></a>Initialisation</h3><p>Ensuite, il faut que vous créez une répertoire pour stocker des codes de votre blog. Je vous conseille de la mettre un lieu avec prudent. Par exemple, dans mon ordinateur, je veux le mettre dans <code>~/myGitHub/blog</code>, alors il y a deux manières de faire l’initialisation:</p>
+<ul>
+<li>sous le répertoire <code>~/myGitHub</code>, j’execute <code>hexo init blog</code></li>
+<li>sous le répertoire <code>~/myGitHub</code>, créer une répertoire <code>mkdir blog</code>, puis change sous la répertoire <code>blog</code> et puis <code>hexo init</code>.</li>
+</ul>
+<p>Il faut faire attention que la répertoire doit être vide, sinon, il y aura des erreurs.</p>
+<p>Après, sous la répertoire <code>blog</code>, vous pouvez voir des fichiers initialisés.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<h3 id="Generer-le-site-et-le-regarder-localement"><a href="#Generer-le-site-et-le-regarder-localement" class="headerlink" title="Générer le site et le regarder localement"></a>Générer le site et le regarder localement</h3><p>Maintenant vous pouvez directement générer le site avec la commande <code>hexo g</code>, il va générer une nouvelle répertoire <code>public</code> sous <code>blog</code>. Et avec la commande <code>hexo s</code>, vous pouvez regarder la prévu du site localement par le lien <code>http://localhost:4000/</code> (Par défault). La figrue ci-dessous est une vue ensemble du site.</p>
+<p><img src="/2018/05/19/githubpages-hexo/hexo.png" alt=""></p>
+<h3 id="Configurantion-sur-GitHub"><a href="#Configurantion-sur-GitHub" class="headerlink" title="Configurantion sur GitHub"></a>Configurantion sur GitHub</h3><p>Ouvrez le fichier de configuration <code>_config.yml</code> sous la répertoire root de votre blog et ajouter les lignes comme la figure.</p>
+<p><img src="/2018/05/19/githubpages-hexo/config_git.png" alt=""></p>
+<p>Ensuite vous pouvez déployer sur votre GitHhb par la commande: <code>hexo d</code>. S’il apparaît une erreur, vous peut-être avoir besoin d’installer <code>hexo-deployer-git</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>Après déploiement avec succès, vous pouvez regarder des fichiers(sans CNAME) dans votre repository de GitHub. Et vous pouvez regarder votre blog par le lien <code>https://USER_NAME.github.io/</code></p>
+<p><img src="/2018/05/19/githubpages-hexo/contenu_github.png" alt=""></p>
+<p>Commandes beaucoup utilisé et son abrévation:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo n New_Article_Name == hexo new New_Article_Name : créer un nouveau article</span><br><span class="line">hexo g == hexo generate : générer des statique fichier dans la  répertoire public</span><br><span class="line">hexo s == hexo server : ouvrir the web localement (parte par défault: 4000)</span><br><span class="line">hexo d == hexo deploy : déployer sur GitHub</span><br><span class="line">hexo clean : nettoyer le cache</span><br></pre></td></tr></table></figure>
+<h2 id="Nom-de-domaine"><a href="#Nom-de-domaine" class="headerlink" title="Nom de domaine"></a>Nom de domaine</h2><p><strong>Référances</strong></p>
+<ul>
+<li>Mac生成ssh和查看ssh key: <a href="http://blog.ipsfan.com/1492.html" target="_blank" rel="noopener">http://blog.ipsfan.com/1492.html</a></li>
+<li>Hexo搭建独立博客全纪录:<a href="https://baoyuzhang.github.io/2017/05/12/%E3%80%90Hexo%E6%90%AD%E5%BB%BA%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%85%A8%E7%BA%AA%E5%BD%95%E3%80%91%EF%BC%88%E4%B8%89%EF%BC%89%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">https://baoyuzhang.github.io/2017/05/12/%E3%80%90Hexo%E6%90%AD%E5%BB%BA%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%85%A8%E7%BA%AA%E5%BD%95%E3%80%91%EF%BC%88%E4%B8%89%EF%BC%89%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</a></li>
+<li>使用 github Pages 服务建立个人独立博客全过程: <a href="http://www.cnblogs.com/yudar/p/4883370.html" target="_blank" rel="noopener">http://www.cnblogs.com/yudar/p/4883370.html</a></li>
+</ul>
 
       
     </div>
     
     
     
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
 
     
 
@@ -340,9 +403,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Hexo/" rel="tag"> <i class="fa fa-tag"></i> Hexo</a>
           
-            <a href="/tags/GitHub-Pages/" rel="tag"># GitHub Pages</a>
+            <a href="/tags/GitHub-Pages/" rel="tag"> <i class="fa fa-tag"></i> GitHub Pages</a>
           
         </div>
       
@@ -355,15 +418,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/19/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/hexo-cases/" rel="prev" title="Comment rédiger vos articles avec hexo">
+                Comment rédiger vos articles avec hexo <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -415,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -432,7 +504,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -442,7 +514,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -464,6 +536,34 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YanyanNIE" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yanyan_nie" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://facebook.com/yanyan.nie.946" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:nieyanyan.syoco@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -476,6 +576,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Creer-une-repository"><span class="nav-number">1.</span> <span class="nav-text">Créer une repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration-de-SSH-KEY"><span class="nav-number">2.</span> <span class="nav-text">Configuration de SSH KEY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creer-votre-site-avec-Hexo"><span class="nav-number">3.</span> <span class="nav-text">Créer votre site avec Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-de-Hexo"><span class="nav-number">3.1.</span> <span class="nav-text">Installation de Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Initialisation"><span class="nav-number">3.2.</span> <span class="nav-text">Initialisation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generer-le-site-et-le-regarder-localement"><span class="nav-number">3.3.</span> <span class="nav-text">Générer le site et le regarder localement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configurantion-sur-GitHub"><span class="nav-number">3.4.</span> <span class="nav-text">Configurantion sur GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nom-de-domaine"><span class="nav-number">4.</span> <span class="nav-text">Nom de domaine</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -499,7 +615,7 @@
   
 </div>
 
-
+<!-- 
   <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
@@ -508,8 +624,8 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  -->
 
 
 
