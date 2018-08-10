@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/poweredby.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social_ui.png">
-<meta property="og:updated_time" content="2018-08-10T10:33:07.125Z">
+<meta property="og:updated_time" content="2018-08-10T10:39:11.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 搭建 Github 博客 - NEXT 主题的应用">
 <meta name="twitter:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
@@ -435,7 +435,7 @@
 <h1 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h1><h2 id="hexo-草稿使用"><a href="#hexo-草稿使用" class="headerlink" title="hexo 草稿使用"></a>hexo 草稿使用</h2><p>在一片博文被发表前, 可能需要经历多次修改. 在博文最终版没有敲定之前, 我们并不想它在网页中显示出来, Hexo 提供草稿编辑模式. 草稿博文默认保存在 <code>blogs/source/_drafts/</code> 目录下, 草稿的模板是提前定义好的，在 <code>blogs/scaffolds</code> 目录中.</p>
 <p>在使用 <code>hexo g</code> 命令生成静态文件的时候, 是不会将草稿也生成的. 如果想要查看草稿的效果, 可以在启动本地服务的时候增加一个参数:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
-<p>或者在 _config.yml文件中进行配置:</p>
+<p>或者在网站配置文件 <code>blogs/_config.yml</code> 中进行配置:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_drafts: true</span><br></pre></td></tr></table></figure>
 <p>这样每次启动本地服务的时候，都会渲染编写的草稿.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft TEST : 创建一个博文草稿</span><br><span class="line">hexo publish [post] &lt;TEST&gt; : 发布草稿 TEST 到 _posts 中</span><br></pre></td></tr></table></figure>
@@ -580,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">articles</span>
                 </a>
               </div>
