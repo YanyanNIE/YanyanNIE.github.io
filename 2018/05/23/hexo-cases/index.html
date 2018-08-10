@@ -79,24 +79,24 @@
 
 
 
-<meta name="description" content="写在前面: 主要记录作者学习使用 next 时的历程. 默认博客根目录 /blog/ hexo管理博文图片技巧hexo 创建的新博文保存在 /blog/source/_posts/下. 我们可以通过一些设置, 使得在新建博文 NEW_ARTICLE.md 的同时, 也会在相同目录下创建一个同名文件夹 NEW_ARTICLE来存储博文中用到的图片. 首先在 /blog/ 下, 安装插件: 1npm">
+<meta name="description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo 搭建 Github 博客 - NEXT 主题的应用">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/hexo-cases/index.html">
 <meta property="og:site_name" content="Ninon&#39;s">
-<meta property="og:description" content="写在前面: 主要记录作者学习使用 next 时的历程. 默认博客根目录 /blog/ hexo管理博文图片技巧hexo 创建的新博文保存在 /blog/source/_posts/下. 我们可以通过一些设置, 使得在新建博文 NEW_ARTICLE.md 的同时, 也会在相同目录下创建一个同名文件夹 NEW_ARTICLE来存储博文中用到的图片. 首先在 /blog/ 下, 安装插件: 1npm">
+<meta property="og:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/end_passage.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social_ui.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/part_article.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/poweredby_code.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/poweredby.png">
-<meta property="og:updated_time" content="2018-07-20T14:45:34.552Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social_ui.png">
+<meta property="og:updated_time" content="2018-08-10T10:33:07.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 搭建 Github 博客 - NEXT 主题的应用">
-<meta name="twitter:description" content="写在前面: 主要记录作者学习使用 next 时的历程. 默认博客根目录 /blog/ hexo管理博文图片技巧hexo 创建的新博文保存在 /blog/source/_posts/下. 我们可以通过一些设置, 使得在新建博文 NEW_ARTICLE.md 的同时, 也会在相同目录下创建一个同名文件夹 NEW_ARTICLE来存储博文中用到的图片. 首先在 /blog/ 下, 安装插件: 1npm">
+<meta name="twitter:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
 <meta name="twitter:image" content="http://yoursite.com/2018/05/23/hexo-cases/end_passage.png">
 
 
@@ -299,7 +299,7 @@
               
                 <span class="post-meta-item-text">Posté le</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T09:17:29+02:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T09:17:29+08:00">
                 2018-05-23
               </time>
             
@@ -375,58 +375,77 @@
       
 
       
-        <p>写在前面: 主要记录作者学习使用 next 时的历程. 默认博客根目录 <code>/blog/</code></p>
-<h2 id="hexo管理博文图片技巧"><a href="#hexo管理博文图片技巧" class="headerlink" title="hexo管理博文图片技巧"></a>hexo管理博文图片技巧</h2><p>hexo 创建的新博文保存在 <code>/blog/source/_posts/</code>下. 我们可以通过一些设置, 使得在新建博文 <code>NEW_ARTICLE.md</code> 的同时, 也会在相同目录下创建一个同名文件夹 <code>NEW_ARTICLE</code>来存储博文中用到的图片.</p>
-<p>首先在 <code>/blog/</code> 下, 安装插件:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<p>在 <code>/blog/_config.yml</code> 中, 修改:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
-<p>创建新博文:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n NEW_ARTICLE</span><br></pre></td></tr></table></figure></p>
-<p>在博文中插入图片的格式:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](hexo-cases/FIGURE_NAME.png)</span><br></pre></td></tr></table></figure>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>克隆你想要更换的主题到 <code>/blog/themes/next</code> 目录:</p>
+        <p>写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 <code>/blog/</code> 下.</p>
+<h1 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h1><h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next.</p>
+<p>首先克隆你想要更换的主题到 <code>/blog/themes/next</code> 目录:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>之后在 <code>/blog/_config.yml</code>中, 变更主题为新主题:</p>
+<p>注意以上命令行是在目录 <code>/blog/</code> 下执行的. 你也可以直接切换到目录 <code>/blog/themes/</code> 下, 然后执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next next</span><br></pre></td></tr></table></figure>
+<p>其中 <code>next</code> 是你存储在本地中克隆下来的主题的名字, 默认跟主题原名保持一致.</p>
+<p>之后在 <code>/blog/_config.yml</code> (网站的基本配置文件)中, 变更主题为新主题, 变更后代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-<h2 id="为博文添加结束标志"><a href="#为博文添加结束标志" class="headerlink" title="为博文添加结束标志"></a>为博文添加结束标志</h2><p><code>/blog/themes/next/layout/_macro/passage_end_tag.swig</code></p>
+<h2 id="管理博文图片"><a href="#管理博文图片" class="headerlink" title="管理博文图片"></a>管理博文图片</h2><p>我们在写博文时, 不可避免地要插入一些图片, 那么如何对这些图片进行管理呢?</p>
+<p>hexo 创建的新博文保存在 <code>/blog/source/_posts/</code>下. 我们可以通过一些设置, 使得在新建博文 <code>NEW_ARTICLE.md</code> 的同时, 也会在相同目录下创建一个同名文件夹 <code>NEW_ARTICLE</code>来存储博文中用到的图片.</p>
+<p>首先在目录 <code>/blog/</code> 下, 执行下面命令安装插件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>插件安装成功后, 在网站基本配置文件 <code>/blog/_config.yml</code> 中, 修改参数如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+<p>这时,我们编辑博文时, 就可以将博文中用到的图片放在同名的文件夹下.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo n NEW_ARTICLE : 创建一个新博文</span><br><span class="line">![](NEW_ARTICLE/FIGURE_NAME.png) : 在博文中插入图片的格式:</span><br></pre></td></tr></table></figure>
+<h1 id="博文"><a href="#博文" class="headerlink" title="博文"></a>博文</h1><h2 id="添加博文结束标志"><a href="#添加博文结束标志" class="headerlink" title="添加博文结束标志"></a>添加博文结束标志</h2><p>在每篇博文结束的地方, 作者想要添加一个结束标识 <code>-------------E N D-------------</code>.</p>
+<p>对下面这个文件进行修改 <code>/blog/themes/next/layout/_macro/passage_end_tag.swig</code>, 如果 <code>passage_end_tag.swig</code> 文件不存在, 请自行在相应目录下创建该文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch passage_end_tag.swig</span><br></pre></td></tr></table></figure>
+<p>在文件中加入以下内容: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:14px;&quot;&gt;-------------E N D-------------&lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>接着打开文件 <code>\themes\next\layout\_macro\post.swig</code>, 在 <code>post-body</code> 之后， <code>post-footer</code> 之前添加如下代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">     &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><code>/blog/themes/next/_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/05/23/hexo-cases/end_passage.png" alt=""></p>
-<h2 id="添加社交网络"><a href="#添加社交网络" class="headerlink" title="添加社交网络"></a>添加社交网络</h2><p><img src="/2018/05/23/hexo-cases/social.png" alt=""></p>
-<p><img src="/2018/05/23/hexo-cases/social_ui.png" alt=""></p>
-<h2 id="为首页文章添加阴影效果"><a href="#为首页文章添加阴影效果" class="headerlink" title="为首页文章添加阴影效果"></a>为首页文章添加阴影效果</h2><p><code>/blog/themes/next/source/css/_custom/custom.styl</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.post &#123;</span><br><span class="line">   margin-top: 60px;</span><br><span class="line">   margin-bottom: 60px;</span><br><span class="line">   padding: 25px;</span><br><span class="line">   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);</span><br><span class="line">   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="改变底部-tags-显示格式"><a href="#改变底部-tags-显示格式" class="headerlink" title="改变底部 tags 显示格式"></a>改变底部 tags 显示格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;# &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>最后打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 在末尾添加:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 博文末尾添加结束标志</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+<p>设置好之后的效果如下图所示:<br><img src="/2018/05/23/hexo-cases/end_passage.png" alt="博文结束标识效果图"></p>
+<h2 id="改变博文底部-tags-显示格式"><a href="#改变博文底部-tags-显示格式" class="headerlink" title="改变博文底部 tags 显示格式"></a>改变博文底部 tags 显示格式</h2><p>next 主题博文底部 tags 默认显示为 <code>#TAGS_NAME</code>, 上面那张效果图中的 tags 显示格式是作者修改后的效果.</p>
+<p>打开文件 <code>/themes/next/layout/_macro/post.swig</code>, 修改下面相应代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;# &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>修改后的代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt; &lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="设置首页文章仅显示部分内容"><a href="#设置首页文章仅显示部分内容" class="headerlink" title="设置首页文章仅显示部分内容"></a>设置首页文章仅显示部分内容</h2><p><code>/blog/themes/next/_config.yml</code></p>
-<p>更改前:</p>
+<h1 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h1><h2 id="首页文章添加阴影效果"><a href="#首页文章添加阴影效果" class="headerlink" title="首页文章添加阴影效果"></a>首页文章添加阴影效果</h2><p>打开文件 <code>/blog/themes/next/source/css/_custom/custom.styl</code>, 修改相应代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.post &#123;</span><br><span class="line">   margin-top: 60px;</span><br><span class="line">   margin-bottom: 60px;</span><br><span class="line">   padding: 25px;</span><br><span class="line">   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);</span><br><span class="line">   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="设置首页文章仅显示部分内容"><a href="#设置首页文章仅显示部分内容" class="headerlink" title="设置首页文章仅显示部分内容"></a>设置首页文章仅显示部分内容</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 更改相应代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Automatically Excerpt. Not recommend.</span><br><span class="line"># Please use &lt;!-- more --&gt; in the post to control excerpt accurately.</span><br><span class="line">auto_excerpt:</span><br><span class="line">  enable: false</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/05/23/hexo-cases/part_article.png" alt=""></p>
-<p>更改后:</p>
+<p>更改后代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Automatically Excerpt. Not recommend.</span><br><span class="line"># Please use &lt;!-- more --&gt; in the post to control excerpt accurately.</span><br><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
-<h2 id="隐藏底部的-‘powered-by’-和-‘theme’"><a href="#隐藏底部的-‘powered-by’-和-‘theme’" class="headerlink" title="隐藏底部的 ‘powered by’ 和 ‘theme’"></a>隐藏底部的 ‘powered by’ 和 ‘theme’</h2><p><code>/blog/themes/next/layout/_partials/footer.swig</code><br><img src="/2018/05/23/hexo-cases/poweredby_code.png" alt=""></p>
-<p><img src="/2018/05/23/hexo-cases/poweredby.png" alt=""></p>
-<h2 id="关于-next-主题侧边栏中的的-tags-和-categories-无法点击的问题"><a href="#关于-next-主题侧边栏中的的-tags-和-categories-无法点击的问题" class="headerlink" title="关于 next 主题侧边栏中的的 tags 和 categories 无法点击的问题"></a>关于 next 主题侧边栏中的的 tags 和 categories 无法点击的问题</h2><p>首先在 <code>blog/source/</code>目录下,查看是否存在 <code>tags/</code> 和 <code>categories/</code> 目录. 如果没有, 自行创建:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br><span class="line">hexo new page &quot;categories&quot;</span><br></pre></td></tr></table></figure>
-<p>在 <code>blogs/source/tags/index.md</code>中, 添加:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
-<p>添加后:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2018-07-20 15:18:47</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<h2 id="首页导航栏添加内容"><a href="#首页导航栏添加内容" class="headerlink" title="首页导航栏添加内容"></a>首页导航栏添加内容</h2><p><code>/blog/themes/next/_config.yml</code></p>
-<p>更改前:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  #about: /about/ || user</span><br><span class="line">  #tags: /tags/ || tags</span><br><span class="line">  #categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure></p>
-<p>更改后:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure></p>
-<p>确保页面存在</p>
-<h2 id="添加侧栏头像"><a href="#添加侧栏头像" class="headerlink" title="添加侧栏头像"></a>添加侧栏头像</h2><p>图片保存在 <code>/blog/themes/next/source/imgs</code> 下.</p>
-<p>在 <code>/blog/themes/themes/next/_config.yml</code>中, 添加 <code>avatar</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/avatar.jpg</span><br></pre></td></tr></table></figure>
-<h2 id="访问量"><a href="#访问量" class="headerlink" title="访问量"></a>访问量</h2><p><code>/blog/themes/next/_config.yml</code></p>
+<p>修改后主页文章显示效果图如下:<br><img src="/2018/05/23/hexo-cases/part_article.png" alt=""></p>
+<h2 id="隐藏底部的-‘powered-by’-和-‘theme’"><a href="#隐藏底部的-‘powered-by’-和-‘theme’" class="headerlink" title="隐藏底部的 ‘powered by’ 和 ‘theme’"></a>隐藏底部的 ‘powered by’ 和 ‘theme’</h2><p>打开文件 <code>/blog/themes/next/layout/_partials/footer.swig</code>, 将下图所示的代码部分用 <code>&lt;!-- --&gt;</code> 隐藏或直接删除:<br><img src="/2018/05/23/hexo-cases/poweredby_code.png" alt=""></p>
+<p>更改后底部显示的效果图:<br><img src="/2018/05/23/hexo-cases/poweredby.png" alt=""></p>
+<h2 id="首页导航栏添加内容"><a href="#首页导航栏添加内容" class="headerlink" title="首页导航栏添加内容"></a>首页导航栏添加内容</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 将你想要添加的导航前的 <code>#</code> 删掉:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  #about: /about/ || user</span><br><span class="line">  #tags: /tags/ || tags</span><br><span class="line">  #categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure>
+<p>添加about, tags 和 categories 后的代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure></p>
+<p>注意添加页面时请先确保该页面存在, 如果不存在, 可参照 <code>关于 next 主题侧边栏中的的 tags 和 categories 无法点击的问题</code> 解决.</p>
+<h2 id="底部添加访问量"><a href="#底部添加访问量" class="headerlink" title="底部添加访问量"></a>底部添加访问量</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 修改代码如下所示:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Show PV/UV of the website/page with busuanzi.</span><br><span class="line"># Get more information on http://ibruce.info/2015/04/04/busuanzi/</span><br><span class="line">busuanzi_count:</span><br><span class="line">  # count values only if the other configs are false</span><br><span class="line">  enable: true</span><br><span class="line">  # custom uv span for the whole site</span><br><span class="line">  site_uv: true</span><br><span class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_uv_footer:</span><br><span class="line">  # custom pv span for the whole site</span><br><span class="line">  site_pv: true</span><br><span class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_pv_footer:</span><br><span class="line">  # custom pv span for one page only</span><br><span class="line">  page_pv: true</span><br><span class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt;</span><br><span class="line">  page_pv_footer:</span><br></pre></td></tr></table></figure>
-<p><strong>Référances</strong></p>
-<ul>
+<h1 id="侧栏"><a href="#侧栏" class="headerlink" title="侧栏"></a>侧栏</h1><h2 id="添加侧栏头像"><a href="#添加侧栏头像" class="headerlink" title="添加侧栏头像"></a>添加侧栏头像</h2><p>侧栏中的图片默认保存在目录 <code>/blog/themes/next/source/imgs</code> 下. 将你想要显示的图片保存在该目录下, 默认图片名为 <code>avatar.jpg</code>.</p>
+<p>打开主题配置文件<code>/blog/themes/themes/next/_config.yml</code>, 修改相应代码如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/avatar.jpg</span><br></pre></td></tr></table></figure>
+<h2 id="侧栏中添加社交网络链接"><a href="#侧栏中添加社交网络链接" class="headerlink" title="侧栏中添加社交网络链接"></a>侧栏中添加社交网络链接</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 将你想要添加的社交链接前的 <code>#</code> 去掉, 注意更改链接为你的社交账号链接, 下图为作者更改后的代码:<br><img src="/2018/05/23/hexo-cases/social.png" alt=""></p>
+<p>侧栏社交链接效果如下图:<br><img src="/2018/05/23/hexo-cases/social_ui.png" alt=""></p>
+<h2 id="侧边栏中的的-tags-和-categories-无法点击的问题"><a href="#侧边栏中的的-tags-和-categories-无法点击的问题" class="headerlink" title="侧边栏中的的 tags 和 categories 无法点击的问题"></a>侧边栏中的的 tags 和 categories 无法点击的问题</h2><p>首先在 <code>blog/source/</code>目录下,查看是否存在 <code>tags/</code> 和 <code>categories/</code> 目录. 如果没有, 自行创建:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br><span class="line">hexo new page &quot;categories&quot;</span><br></pre></td></tr></table></figure>
+<p>在 <code>blogs/source/tags/index.md</code>中, 添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>添加后代码显示如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2018-07-20 15:18:47</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<h1 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h1><h2 id="hexo-草稿使用"><a href="#hexo-草稿使用" class="headerlink" title="hexo 草稿使用"></a>hexo 草稿使用</h2><p>在一片博文被发表前, 可能需要经历多次修改. 在博文最终版没有敲定之前, 我们并不想它在网页中显示出来, Hexo 提供草稿编辑模式. 草稿博文默认保存在 <code>blogs/source/_drafts/</code> 目录下, 草稿的模板是提前定义好的，在 <code>blogs/scaffolds</code> 目录中.</p>
+<p>在使用 <code>hexo g</code> 命令生成静态文件的时候, 是不会将草稿也生成的. 如果想要查看草稿的效果, 可以在启动本地服务的时候增加一个参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
+<p>或者在 _config.yml文件中进行配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_drafts: true</span><br></pre></td></tr></table></figure>
+<p>这样每次启动本地服务的时候，都会渲染编写的草稿.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft TEST : 创建一个博文草稿</span><br><span class="line">hexo publish [post] &lt;TEST&gt; : 发布草稿 TEST 到 _posts 中</span><br></pre></td></tr></table></figure>
+<p>post模板也是在 <code>blogs/scaffolds</code> 目录中定义好的, 发布命令执行后, _drafts目录中的草稿也就被移除掉了.</p>
+<p>注意 <code>hexo publish</code> 命令默认使用post模板, <title> 是指文章的标题, 而不是加后缀的文件名.</title></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Referances"><a href="#Referances" class="headerlink" title="Référances"></a>Référances</h1><ul>
 <li><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="noopener">hexo博客图片问题</a></li>
 <li><a href="https://segmentfault.com/a/1190000009544924" target="_blank" rel="noopener">hexo的next主题个性化配置教程</a></li>
-<li><a href="https://www.jianshu.com/p/393d067dba8d" target="_blank" rel="noopener">Hexo之next主题设置首页不显示全文(只显示预览)</a></li>
+<li><a href="http://www.cubemister.com/Blog/2016/10/04/Hexo-%E7%BC%96%E5%86%99%E5%92%8C%E5%8F%91%E5%B8%83%E8%8D%89%E7%A8%BF/" target="_blank" rel="noopener">Hexo - 编写和发布草稿</a></li>
 </ul>
 
       
@@ -561,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">articles</span>
                 </a>
               </div>
@@ -572,7 +591,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -583,7 +602,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -644,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo管理博文图片技巧"><span class="nav-number">1.</span> <span class="nav-text">hexo管理博文图片技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">2.</span> <span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为博文添加结束标志"><span class="nav-number">3.</span> <span class="nav-text">为博文添加结束标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加社交网络"><span class="nav-number">4.</span> <span class="nav-text">添加社交网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为首页文章添加阴影效果"><span class="nav-number">5.</span> <span class="nav-text">为首页文章添加阴影效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变底部-tags-显示格式"><span class="nav-number">6.</span> <span class="nav-text">改变底部 tags 显示格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置首页文章仅显示部分内容"><span class="nav-number">7.</span> <span class="nav-text">设置首页文章仅显示部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏底部的-‘powered-by’-和-‘theme’"><span class="nav-number">8.</span> <span class="nav-text">隐藏底部的 ‘powered by’ 和 ‘theme’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-next-主题侧边栏中的的-tags-和-categories-无法点击的问题"><span class="nav-number">9.</span> <span class="nav-text">关于 next 主题侧边栏中的的 tags 和 categories 无法点击的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页导航栏添加内容"><span class="nav-number">10.</span> <span class="nav-text">首页导航栏添加内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加侧栏头像"><span class="nav-number">11.</span> <span class="nav-text">添加侧栏头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问量"><span class="nav-number">12.</span> <span class="nav-text">访问量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站配置"><span class="nav-number">1.</span> <span class="nav-text">网站配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.1.</span> <span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博文图片"><span class="nav-number">1.2.</span> <span class="nav-text">管理博文图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博文"><span class="nav-number">2.</span> <span class="nav-text">博文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加博文结束标志"><span class="nav-number">2.1.</span> <span class="nav-text">添加博文结束标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变博文底部-tags-显示格式"><span class="nav-number">2.2.</span> <span class="nav-text">改变博文底部 tags 显示格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#首页"><span class="nav-number">3.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页文章添加阴影效果"><span class="nav-number">3.1.</span> <span class="nav-text">首页文章添加阴影效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置首页文章仅显示部分内容"><span class="nav-number">3.2.</span> <span class="nav-text">设置首页文章仅显示部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏底部的-‘powered-by’-和-‘theme’"><span class="nav-number">3.3.</span> <span class="nav-text">隐藏底部的 ‘powered by’ 和 ‘theme’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页导航栏添加内容"><span class="nav-number">3.4.</span> <span class="nav-text">首页导航栏添加内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部添加访问量"><span class="nav-number">3.5.</span> <span class="nav-text">底部添加访问量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#侧栏"><span class="nav-number">4.</span> <span class="nav-text">侧栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加侧栏头像"><span class="nav-number">4.1.</span> <span class="nav-text">添加侧栏头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧栏中添加社交网络链接"><span class="nav-number">4.2.</span> <span class="nav-text">侧栏中添加社交网络链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏中的的-tags-和-categories-无法点击的问题"><span class="nav-number">4.3.</span> <span class="nav-text">侧边栏中的的 tags 和 categories 无法点击的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑"><span class="nav-number">5.</span> <span class="nav-text">编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-草稿使用"><span class="nav-number">5.1.</span> <span class="nav-text">hexo 草稿使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Referances"><span class="nav-number">6.</span> <span class="nav-text">Référances</span></a></li></ol></div>
             
 
           </div>
