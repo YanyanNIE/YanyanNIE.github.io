@@ -91,7 +91,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/poweredby.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/social_ui.png">
-<meta property="og:updated_time" content="2018-11-08T15:49:10.289Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/leancloud-inscription.PNG">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/leancloud-app.PNG">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/hexo-cases/leancloud-idkey.PNG">
+<meta property="og:updated_time" content="2018-11-08T16:18:00.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 搭建 Github 博客 - NEXT 主题的应用">
 <meta name="twitter:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
@@ -296,15 +299,27 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posted</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T09:17:29+02:00">
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2018-05-23T09:17:29+02:00">
                 2018-05-23
               </time>
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2018-11-08T17:18:00+01:00">
+                2018-11-08
+              </time>
             
           </span>
 
@@ -375,10 +390,10 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words&#58;</span>
+                  <span class="post-meta-item-text"> &#58;</span>
                 
-                <span title="Words">
-                  1.9k
+                <span title=" ">
+                  2.1k
                 </span>
               
 
@@ -391,10 +406,10 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Time &asymp;</span>
+                  <span class="post-meta-item-text">  &asymp;</span>
                 
-                <span title="Time">
-                  8
+                <span title=" ">
+                  9
                 </span>
               
             </div>
@@ -482,6 +497,15 @@
 <p>post模板也是在 <code>blogs/scaffolds</code> 目录中定义好的, 发布命令执行后, _drafts目录中的草稿也就被移除掉了.</p>
 <p>注意 <code>hexo publish</code> 命令默认使用post模板, <title> 是指文章的标题, 而不是加后缀的文件名.</title></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h1><p>本站使用的 valine 评论系统是放在 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud</a> 上的。因此首先需要创建一个 leancloud 账号。</p>
+<p>进入网站后，点击右上角控制台注册或登录账号：</p>
+<p><img src="/2018/05/23/hexo-cases/leancloud-inscription.PNG" alt=""></p>
+<p>创建一个应用：</p>
+<p><img src="/2018/05/23/hexo-cases/leancloud-app.PNG" alt=""></p>
+<p>在设置里面，获得 <strong>APP ID</strong> 和 <strong>APP KEY</strong>：</p>
+<p><img src="/2018/05/23/hexo-cases/leancloud-idkey.PNG" alt=""></p>
+<p>接下来更改 next 主题配置文件 <code>/blog/themes/next/_config.yml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid: xxxx # your leancloud application appid</span><br><span class="line">  appkey: xxxx # your leancloud application appkey</span><br><span class="line">  notify: false # mail notifier , https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: Add your comments # comment box placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick,mail,link # custom comment header</span><br><span class="line">  pageSize: 10 # pagination size</span><br></pre></td></tr></table></figure>
 <h1 id="Referances"><a href="#Referances" class="headerlink" title="Référances"></a>Référances</h1><ul>
 <li><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="noopener">hexo博客图片问题</a></li>
 <li><a href="https://segmentfault.com/a/1190000009544924" target="_blank" rel="noopener">hexo的next主题个性化配置教程</a></li>
@@ -721,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站配置"><span class="nav-number">1.</span> <span class="nav-text">网站配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.1.</span> <span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博文图片"><span class="nav-number">1.2.</span> <span class="nav-text">管理博文图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博文"><span class="nav-number">2.</span> <span class="nav-text">博文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加博文结束标志"><span class="nav-number">2.1.</span> <span class="nav-text">添加博文结束标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变博文底部-tags-显示格式"><span class="nav-number">2.2.</span> <span class="nav-text">改变博文底部 tags 显示格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#首页"><span class="nav-number">3.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页文章添加阴影效果"><span class="nav-number">3.1.</span> <span class="nav-text">首页文章添加阴影效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置首页文章仅显示部分内容"><span class="nav-number">3.2.</span> <span class="nav-text">设置首页文章仅显示部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏底部的-‘powered-by’-和-‘theme’"><span class="nav-number">3.3.</span> <span class="nav-text">隐藏底部的 ‘powered by’ 和 ‘theme’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页导航栏添加内容"><span class="nav-number">3.4.</span> <span class="nav-text">首页导航栏添加内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部添加访问量"><span class="nav-number">3.5.</span> <span class="nav-text">底部添加访问量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#侧栏"><span class="nav-number">4.</span> <span class="nav-text">侧栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加侧栏头像"><span class="nav-number">4.1.</span> <span class="nav-text">添加侧栏头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧栏中添加社交网络链接"><span class="nav-number">4.2.</span> <span class="nav-text">侧栏中添加社交网络链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏中的的-tags-和-categories-无法点击的问题"><span class="nav-number">4.3.</span> <span class="nav-text">侧边栏中的的 tags 和 categories 无法点击的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑"><span class="nav-number">5.</span> <span class="nav-text">编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-草稿使用"><span class="nav-number">5.1.</span> <span class="nav-text">hexo 草稿使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Referances"><span class="nav-number">6.</span> <span class="nav-text">Référances</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站配置"><span class="nav-number">1.</span> <span class="nav-text">网站配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.1.</span> <span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博文图片"><span class="nav-number">1.2.</span> <span class="nav-text">管理博文图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博文"><span class="nav-number">2.</span> <span class="nav-text">博文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加博文结束标志"><span class="nav-number">2.1.</span> <span class="nav-text">添加博文结束标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变博文底部-tags-显示格式"><span class="nav-number">2.2.</span> <span class="nav-text">改变博文底部 tags 显示格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#首页"><span class="nav-number">3.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页文章添加阴影效果"><span class="nav-number">3.1.</span> <span class="nav-text">首页文章添加阴影效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置首页文章仅显示部分内容"><span class="nav-number">3.2.</span> <span class="nav-text">设置首页文章仅显示部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏底部的-‘powered-by’-和-‘theme’"><span class="nav-number">3.3.</span> <span class="nav-text">隐藏底部的 ‘powered by’ 和 ‘theme’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页导航栏添加内容"><span class="nav-number">3.4.</span> <span class="nav-text">首页导航栏添加内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部添加访问量"><span class="nav-number">3.5.</span> <span class="nav-text">底部添加访问量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#侧栏"><span class="nav-number">4.</span> <span class="nav-text">侧栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加侧栏头像"><span class="nav-number">4.1.</span> <span class="nav-text">添加侧栏头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧栏中添加社交网络链接"><span class="nav-number">4.2.</span> <span class="nav-text">侧栏中添加社交网络链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏中的的-tags-和-categories-无法点击的问题"><span class="nav-number">4.3.</span> <span class="nav-text">侧边栏中的的 tags 和 categories 无法点击的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑"><span class="nav-number">5.</span> <span class="nav-text">编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-草稿使用"><span class="nav-number">5.1.</span> <span class="nav-text">hexo 草稿使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论系统"><span class="nav-number">6.</span> <span class="nav-text">评论系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Referances"><span class="nav-number">7.</span> <span class="nav-text">Référances</span></a></li></ol></div>
             
 
           </div>
