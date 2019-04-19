@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mac," />
 
 
 
@@ -77,14 +77,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="背景描述通常出厂设置的移动硬盘都是NTFS格式，只适合微软 Windows 操作系统使用。在 Mac 系统下接入 NTFS 格式移动硬盘后，会发现无法对硬盘进行写操作。解决这一问题，可以进行手动挂载，并在挂载时加上写权限。 解决方法 将磁盘挂载到电脑，打开终端，输入如图所示命令，获得移动硬盘设备文件名   移动硬盘挂在在/dev/disk2位置，设备文件名为disk2s1  新建一个文件夹用于挂载">
+<meta name="keywords" content="mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决 mac 接入移动硬盘不能写问题">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/mac-ntfs/index.html">
 <meta property="og:site_name" content="Ninon&#39;s">
+<meta property="og:description" content="背景描述通常出厂设置的移动硬盘都是NTFS格式，只适合微软 Windows 操作系统使用。在 Mac 系统下接入 NTFS 格式移动硬盘后，会发现无法对硬盘进行写操作。解决这一问题，可以进行手动挂载，并在挂载时加上写权限。 解决方法 将磁盘挂载到电脑，打开终端，输入如图所示命令，获得移动硬盘设备文件名   移动硬盘挂在在/dev/disk2位置，设备文件名为disk2s1  新建一个文件夹用于挂载">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-20T13:20:42.620Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/mac-ntfs/disk2s1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/mac-ntfs/shell-mount.png">
+<meta property="og:updated_time" content="2019-04-19T15:28:36.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="解决 mac 接入移动硬盘不能写问题">
+<meta name="twitter:description" content="背景描述通常出厂设置的移动硬盘都是NTFS格式，只适合微软 Windows 操作系统使用。在 Mac 系统下接入 NTFS 格式移动硬盘后，会发现无法对硬盘进行写操作。解决这一问题，可以进行手动挂载，并在挂载时加上写权限。 解决方法 将磁盘挂载到电脑，打开终端，输入如图所示命令，获得移动硬盘设备文件名   移动硬盘挂在在/dev/disk2位置，设备文件名为disk2s1  新建一个文件夹用于挂载">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/19/mac-ntfs/disk2s1.png">
 
 
 
@@ -114,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/mac-ntfs/"/>
 
 
 
 
 
-  <title>tags | Ninon's</title>
+  <title>解决 mac 接入移动硬盘不能写问题 | Ninon's</title>
   
 
 
@@ -246,40 +253,274 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/mac-ntfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanyan NIE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ninon's">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                12 tags in total
+          <h1 class="post-title" itemprop="name headline">解决 mac 接入移动硬盘不能写问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2019-04-19T16:57:01+02:00">
+                2019-04-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2019-04-19T17:28:36+02:00">
+                2019-04-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中文/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中文/问题/" itemprop="url" rel="index">
+                    <span itemprop="name">问题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/19/mac-ntfs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/19/mac-ntfs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> &#58;</span>
+                
+                <span title=" ">
+                  312
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">  &asymp;</span>
+                
+                <span title=" ">
+                  1
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/GitHub-Pages/" style="font-size: 12px; color: #ccc">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 30px; color: #111">Hexo</a> <a href="/tags/IDE/" style="font-size: 12px; color: #ccc">IDE</a> <a href="/tags/SSL/" style="font-size: 12px; color: #ccc">SSL</a> <a href="/tags/TLS/" style="font-size: 12px; color: #ccc">TLS</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 12px; color: #ccc">Visual Studio Code</a> <a href="/tags/mac/" style="font-size: 12px; color: #ccc">mac</a> <a href="/tags/plantUML/" style="font-size: 12px; color: #ccc">plantUML</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>通常出厂设置的移动硬盘都是NTFS格式，只适合微软 Windows 操作系统使用。在 Mac 系统下接入 NTFS 格式移动硬盘后，会发现无法对硬盘进行写操作。解决这一问题，可以进行手动挂载，并在挂载时加上写权限。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li>将磁盘挂载到电脑，打开终端，输入如图所示命令，获得移动硬盘设备文件名</li>
+</ol>
+<p><img src="/2019/04/19/mac-ntfs/disk2s1.png" alt=""></p>
+<p>移动硬盘挂在在<code>/dev/disk2</code>位置，设备文件名为<code>disk2s1</code></p>
+<ol start="2">
+<li>新建一个文件夹用于挂载移动硬盘，这里在桌面新建一个和移动硬盘同名的文件夹</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ~/Desktop/Ninon_utc</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>解除默认挂载</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo umount /dev/disk2s1</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>进行手动挂载并加入写权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount_ntfs -o rw,nobrowse /dev/disk2s1 ~/Desktop/Ninon_utc</span><br></pre></td></tr></table></figure>
+<h2 id="简化操作步骤"><a href="#简化操作步骤" class="headerlink" title="简化操作步骤"></a>简化操作步骤</h2><p>如果硬盘使用比较频繁，那么每次都输入命令就会显得很重复。不妨通过 shell 文件来简化操作。</p>
+<ol>
+<li>创建文件 <code>disk_mount.sh</code>。这里之间在 <code>~/</code>下进行创建。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch disk_mount.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将上面使用的命令加入到文件中：</li>
+</ol>
+<p><img src="/2019/04/19/mac-ntfs/shell-mount.png" alt=""></p>
+<ol start="3">
+<li>再次挂载移动硬盘时，只需要在终端执行该文件就可以了</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./disk_mount.sh</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mac/" rel="tag"> <i class="fa fa-tag"></i> mac</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/vs-config-shell/" rel="next" title="如何用 visual Studio Code 打开Linux系统目录文件">
+                <i class="fa fa-chevron-left"></i> 如何用 visual Studio Code 打开Linux系统目录文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -315,8 +556,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -422,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化操作步骤"><span class="nav-number">3.</span> <span class="nav-text">简化操作步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
