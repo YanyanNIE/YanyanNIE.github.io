@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en,zh-Hans,fr-FR,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32world.png?v=5.1.4">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介代码临界区在多个程序共享资源的情况下, 常常会因为多个程序同时访问一个共享资源而引发一系列问题。为了防止这一问题, 引入了代码临界区的概念。 代码临界区是指操作系统在处理时不可分割的代码。在上述情况下, 即指: 在任一时刻, 只能有一个程序访问临界区并执行代码。 信号量提供了这样一种访问机制。简单来说, 信号量的功能就是用来协调进程对共享资源的访问。 工作原理程序对信号量 s 的访问都是原子操">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 进程间通信-信号量">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/linux-sem/index.html">
+<meta property="og:site_name" content="Ninon&#39;s">
+<meta property="og:description" content="简介代码临界区在多个程序共享资源的情况下, 常常会因为多个程序同时访问一个共享资源而引发一系列问题。为了防止这一问题, 引入了代码临界区的概念。 代码临界区是指操作系统在处理时不可分割的代码。在上述情况下, 即指: 在任一时刻, 只能有一个程序访问临界区并执行代码。 信号量提供了这样一种访问机制。简单来说, 信号量的功能就是用来协调进程对共享资源的访问。 工作原理程序对信号量 s 的访问都是原子操">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/linux-sem/sem-section-critique.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/linux-sem/sem-philo.jpg">
+<meta property="og:updated_time" content="2019-05-16T21:23:27.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 进程间通信-信号量">
+<meta name="twitter:description" content="简介代码临界区在多个程序共享资源的情况下, 常常会因为多个程序同时访问一个共享资源而引发一系列问题。为了防止这一问题, 引入了代码临界区的概念。 代码临界区是指操作系统在处理时不可分割的代码。在上述情况下, 即指: 在任一时刻, 只能有一个程序访问临界区并执行代码。 信号量提供了这样一种访问机制。简单来说, 信号量的功能就是用来协调进程对共享资源的访问。 工作原理程序对信号量 s 的访问都是原子操">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/16/linux-sem/sem-section-critique.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/16/linux-sem/"/>
+
+
+
+
+
+  <title>linux 进程间通信-信号量 | Ninon's</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ninon's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">to be continued</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/16/linux-sem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanyan NIE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ninon's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux 进程间通信-信号量</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2019-05-16T23:12:51+02:00">
+                2019-05-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2019-05-16T23:23:27+02:00">
+                2019-05-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中文/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中文/原理/" itemprop="url" rel="index">
+                    <span itemprop="name">原理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/16/linux-sem/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/16/linux-sem/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> &#58;</span>
+                
+                <span title=" ">
+                  4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">  &asymp;</span>
+                
+                <span title=" ">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="代码临界区"><a href="#代码临界区" class="headerlink" title="代码临界区"></a>代码临界区</h3><p>在多个程序共享资源的情况下, 常常会因为多个程序同时访问一个共享资源而引发一系列问题。为了防止这一问题, 引入了代码临界区的概念。</p>
+<p>代码临界区是指操作系统在处理时不可分割的代码。在上述情况下, 即指: 在任一时刻, 只能有一个程序访问临界区并执行代码。</p>
+<p>信号量提供了这样一种访问机制。简单来说, 信号量的功能就是用来协调进程对共享资源的访问。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>程序对信号量 s 的访问都是原子操作, 且只允许它进行 P (占用) 和 V (释放) 信号量两种操作。最常见的信号量取值范围是 0 或 1, 即二进制信号量, 可以取多个正整数的信号量被称为通用信号量。</p>
+<p>P(s)和V(s)操作是这样的: </p>
+<ul>
+<li>P(s): 如果s的值大于零, 就给它减1; 如果它的值为零, 就挂起该进程; </li>
+<li>V(s): 如果有其他进程因s被占用而被挂起, 就让它恢复运行, 如果没有, 就给它加1.</li>
+</ul>
+<p>例子: 如图所示, p1 和 p2 两个进程共享信号量s, p1进程执行了P(s)操作, 它将得到信号量, 并可以进入临界区, 使s减1。而 p2 进程将被阻止进入临界区, 因为当它试图执行P(s)时, s为0, 它会被挂起以等待。当p1 进程离开临界区域并执行V(s)释放信号量, 这时 p2 进程可以恢复执行</p>
+<div align="center"><br><img src="/2019/05/16/linux-sem/sem-section-critique.png" width="50%" height="50%"><br></div>
+
+
+<h2 id="经典问题"><a href="#经典问题" class="headerlink" title="经典问题"></a>经典问题</h2><h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><p>桌子上有五个餐盘,  5 个餐叉, 餐叉分布在餐盘的两边。 现在有5 个哲学家,  哲学家可以思考或进食, 但是进食时必须同时使用盘子两边的餐叉。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">philosophy(i)&#123;</span><br><span class="line">    repeat&#123;</span><br><span class="line">        think();</span><br><span class="line">        eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="center"><br><img src="/2019/05/16/linux-sem/sem-philo.jpg" width="40%" height="40%"><br></div>
+
+<p>哲学家之间的进食行为属于互斥行为, 共享的资源是餐叉。当一个哲学家进食时, 由于他必须使用餐盘两边的叉子, 那么与该哲学家相邻的另外两个哲学家因为缺少一个餐叉无法进食。</p>
+<ul>
+<li>fork[5]: 信号量集[0..4]</li>
+<li>对于第 i 个哲学家: <ul>
+<li>其右手边的餐叉为:  i</li>
+<li>其左手边的餐叉为:  (i+1)%5</li>
+</ul>
+</li>
+<li>初始化信号量集 fork[] 为 1: init(fork[i],1)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">philosophy(i)&#123;</span><br><span class="line">    repeat&#123;</span><br><span class="line">        think();</span><br><span class="line">        P(fork[i]);</span><br><span class="line">        P(fork[(i+1)%5];</span><br><span class="line">        eat();</span><br><span class="line">        V(fork[i]);</span><br><span class="line">        V(fork[(i+1)%5];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>算法规定: 每个哲学家先拿起右手边的餐叉, 再拿起左手边的餐叉。这时, 如果 5 个哲学家同时开始进食, 每个哲学家都拿起了右手边的餐叉, 这意味着每个哲学家左手边的餐叉都被另一个哲学家占用, 这样导致没有一个哲学家能吃上饭。这就导致了死锁。</p>
+<p>我们进一步思考一下。当所有哲学家同时想要进食时, 会造成死锁, 那么 4 个呢？进一步分析, 当 4 个哲学家同时拿起他们右边的餐叉, 必定有一个哲学家左手边的餐叉是空闲的, 那么这位哲学家就可以进食, 其他三位则需要等待资源, 当这位哲学家吃完放下餐叉, 则等待中的哲学家能够进食。</p>
+<p>所以不妨限制同一时间可以发起进食请求的哲学家数量。使同一时间, 桌子边上想要吃饭的哲学家最多只能为 4 人。</p>
+<ul>
+<li>demande: 信号量, 初始化为 4: init(chair,4)</li>
+</ul>
+<p>则上面的算法修正后就避免了死锁问题: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">philosophy(i)&#123;</span><br><span class="line">    repeat&#123;</span><br><span class="line">        think();</span><br><span class="line">        P(demande);</span><br><span class="line">        P(fork[i]);</span><br><span class="line">        P(fork[(i+1)%5];</span><br><span class="line">        V(demande);</span><br><span class="line">        eat();</span><br><span class="line">        V(fork[i]);</span><br><span class="line">        V(fork[(i+1)%5];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="作者-读者问题"><a href="#作者-读者问题" class="headerlink" title="作者-读者问题"></a>作者-读者问题</h3><p>作者-读者之间的关系, 概括地来说, 即为: 读写互斥, 写写互斥, 读读并发。</p>
+<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法 1"></a>算法 1</h4><p>假设现在有一个文件: </p>
+<ul>
+<li>若作者 a 正在写文件, 另一个作者 b 想要修改, 则加入文件等待队列, 直到 a 完成写操作并释放资源</li>
+<li>若作者 a 正在写文件, 读者 A 想要修改, 则加入文件等待队列, 直到 a 完成写操作并释放资源</li>
+<li>若读者 A 正在读文件, 作者 a 想要修改, 则加入文件等待队列; 需要注意的是, 当所有读者都完成读操作时, 才释放文件资源</li>
+</ul>
+<p>我们设定: </p>
+<ul>
+<li>file: 信号量, 初始为 1: init(file,1) </li>
+<li>nb_reader: 正在读文件的读者数量, 初始为 0</li>
+<li>mutex: 信号量, 初始为 1: init(mutex,1) 控制多个读者之间的转换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">author(i)&#123;</span><br><span class="line">    P(file);</span><br><span class="line">    write();</span><br><span class="line">    V(file);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">reader(i)&#123;</span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader + 1;</span><br><span class="line">    if(nb_reader == 1)&#123;</span><br><span class="line">        P(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">    </span><br><span class="line">    read()</span><br><span class="line"></span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader - 1;</span><br><span class="line">    if(nb_reader == 0)&#123;</span><br><span class="line">        V(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意-1</strong>: 等待队列只是指请求发生的先后顺序, 并不意味着请求被处理的顺序。实际上, 当等待的请求获得它们所需的资源后, 即可被执行。</p>
+<p>比如说, 假设读者 A 正在阅读, 作者 a 发起写请求, 由于需要的 file 资源被读者 A 占用, 所有作者 a 等待; 此时, 若另一个读者 B 发起读请求, 由于 mutex 资源闲置, 所以读者 B 可以进行读操作。</p>
+<p><strong>注意-2</strong> 假设读者 A 正准备释放文件资源, 同时读者 B (新到来的读请求)  和作者 a 都在等待资源, 由于读者 B 等待的 mutex 资源后于作者 a 等待的 file 资源释放, 所以会先处理作者 a 的请求。  </p>
+<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法 2"></a>算法 2</h4><p>在上面的算法中, 如果一个读请求后于一个写请求来到, 但是却有可能先于读请求操作。如果我们想要读写请求按到来的先后顺序进行, 则可以在上述算法的基础上, 添加一个 order 信号量。</p>
+<ul>
+<li>order: 信号量, 初始为 1: init(order, 0)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">author(i)&#123;</span><br><span class="line">    P(order);</span><br><span class="line">    P(file);</span><br><span class="line">    write();</span><br><span class="line">    V(file);</span><br><span class="line">    V(order);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">reader(i)&#123;</span><br><span class="line">    P(order);</span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader + 1;</span><br><span class="line">    if(nb_reader == 1)&#123;</span><br><span class="line">        P(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">    V(order);</span><br><span class="line">    </span><br><span class="line">    read()</span><br><span class="line"></span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader - 1;</span><br><span class="line">    if(nb_reader == 0)&#123;</span><br><span class="line">        V(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种情况下, 若有读者正在读, 且有作者正在等待, 由于 order 资源被等待的作者占用 (作者等待 file 资源) , 而后面来到的读请求需要等待 ordre 资源，所以后来到的读请求不会先于写请求被处理。</p>
+<h4 id="算法-3"><a href="#算法-3" class="headerlink" title="算法 3"></a>算法 3</h4><p>在算法 1 中, 假设作者 a 释放资源, 同时读者 A 和作者 b 都在等待资源, 由于读者 A 和作者 b都在等待 file 资源, 因此无法得知谁的请求先被处理。假设为了保证为读者服务的质量, 要求在此情况下, 要让读请求优先于写请求被处理。在算法 1 的基础上进行改动: </p>
+<p>我们设定一个新的信号量, 对该情况下的写请求进行阻碍: </p>
+<ul>
+<li>writebar: 信号量, 初始为 1: init(writebar,1)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">author(i)&#123;</span><br><span class="line">    P(writebar);</span><br><span class="line">    P(file);</span><br><span class="line">    write();</span><br><span class="line">    V(file);</span><br><span class="line">    V(writebar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">reader(i)&#123;</span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader + 1;</span><br><span class="line">    if(nb_reader == 1)&#123;</span><br><span class="line">        P(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">    </span><br><span class="line">    read()</span><br><span class="line"></span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader - 1;</span><br><span class="line">    if(nb_reader == 0)&#123;</span><br><span class="line">        V(file); // V(writebar);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意-3</strong>: writebar 资源释放可以在 author 中, 也可以在 reader 中, 只要保证后于 file 资源释放就可以了。根据算法 3, 假设作者 a 正准备释放文件资源, 同时读者 A 和作者 b 都在等待资源, 由于读者 A 等待的 file 资源先于作者 b 等待的 writebar 资源释放, 所以会先处理读者 A 的请求。</p>
+<h4 id="算法-4"><a href="#算法-4" class="headerlink" title="算法 4"></a>算法 4</h4><p>假设现在我们要求读操作也优先于写操作: 即如果一个读请求发生, 则它被加入到等待队列, 直到没有进行或等待的写操作。</p>
+<ul>
+<li>fifo: 信号量, 初始化为 1: init(fifo, 1)</li>
+<li>nb_author: 正在执行的作者的数量</li>
+<li>mutex2: 信号量, 初始化为 1: init(fifo, 1); 作者之间进行转换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">author(i)&#123;</span><br><span class="line">    P(mutex2);</span><br><span class="line">    nb_author = nb_author + 1;</span><br><span class="line">    if(nb_author == 1)&#123;</span><br><span class="line">        P(fifo);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex2);</span><br><span class="line"></span><br><span class="line">    P(file);</span><br><span class="line">    write();</span><br><span class="line">    V(file);</span><br><span class="line"></span><br><span class="line">    P(mutex2);</span><br><span class="line">    nb_author = nb_author - 1;</span><br><span class="line">    if(nb_author == 0)&#123;</span><br><span class="line">        V(fifo);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">reader(i)&#123;</span><br><span class="line">    P(fifo);</span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader + 1;</span><br><span class="line">    if(nb_reader == 1)&#123;</span><br><span class="line">        P(file);</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">    P(fifo);</span><br><span class="line">    </span><br><span class="line">    read()</span><br><span class="line"></span><br><span class="line">    P(mutex);</span><br><span class="line">    nb_reader = nb_reader - 1;</span><br><span class="line">    if(nb_reader == 0)&#123;</span><br><span class="line">        V(file); // V(writebar)</span><br><span class="line">    &#125;</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若作者 a 正在执行写操作，其他作者可以增加 nb_author, 并等待 file 权限；当所有等待队列中的写操作执行完毕，假设作者 n 正在释放 fifo 资源（即便有一个新的写请求，因为它需要的 mutex2 资源后于 fifo 释放), 正在等待的读者会获取 fifo 权限。</p>
+<h3 id="生产者-消费者问题"><a href="#生产者-消费者问题" class="headerlink" title="生产者-消费者问题"></a>生产者-消费者问题</h3><p>TODO</p>
+<h2 id="Linux-信号量接口"><a href="#Linux-信号量接口" class="headerlink" title="Linux 信号量接口"></a>Linux 信号量接口</h2><p>Linux提供了一组信号量接口来对信号进行操作, 这些函数都是用来对成组的信号量值进行操作。它们的执行需要声明头文件: </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="semget"><a href="#semget" class="headerlink" title="semget()"></a>semget()</h3><p>作用: 创建一个新信号量或取得一个已有信号量</p>
+<p>原型: </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">int</span> num_sems, <span class="keyword">int</span> sem_flags)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>返回值: </p>
+<ul>
+<li>成功: 信号量集标识符 shm_id</li>
+<li>出错: -1, 错误原因存于error中</li>
+</ul>
+</li>
+<li><p>传入参数: </p>
+<ul>
+<li>key: <ul>
+<li><code>0(IPC_PRIVATE)</code>: 建立新信号量集对象</li>
+<li><code>大于0的32位整数</code>: 视参数sem_flgs来确定操作, 通常要求此值来源于ftok返回的IPC键值</li>
+</ul>
+</li>
+<li>num_sems: 创建信号量集中信号量的个数, 该参数只在创建信号量集时有效</li>
+<li>sem_flags:<ul>
+<li><code>0</code>: 取信号量集标识符, 若不存在则函数会报错</li>
+<li><code>IPC_CREAT</code>: 当sem_flgs&amp;IPC_CREAT为真时, 如果内核中不存在键值与key相等的信号量集, 则新建一个信号量集; 如果存在这样的信号量集, 返回此信号量集的标识符</li>
+<li><code>IPC_CREAT|IPC_EXCL</code>: 如果内核中不存在键值与key相等的信号量集, 则新建一个消息队列; 如果存在这样的信号量集则报错</li>
+<li>sem_flgs参数为模式标志参数, 使用时需要与<code>IPC对象存取权限</code> (如0600) 进行|运算来确定信号量集的存取权限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>错误代码: <ul>
+<li>EACCESS: 没有权限</li>
+<li>EEXIST: 信号量集已经存在, 无法创建</li>
+<li>EIDRM: 信号量集已经删除</li>
+<li>ENOENT: 信号量集不存在, 同时semflg没有设置IPC_CREAT标志</li>
+<li>ENOMEM: 没有足够的内存创建新的信号量集</li>
+<li>ENOSPC: 超出限制</li>
+</ul>
+</li>
+</ul>
+<h3 id="semop"><a href="#semop" class="headerlink" title="semop()"></a>semop()</h3><ul>
+<li><p>作用: 对信号量集标识符为semid中的一个或多个信号量进行P操作或V操作</p>
+</li>
+<li><p>原型: </p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semop</span><span class="params">(<span class="keyword">int</span> sem_id, struct sembuf *sem_opa, <span class="keyword">size_t</span> num_sem_ops)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回值: </p>
+<ul>
+<li>成功: 信号量集标识符</li>
+<li>出错: -1, 错误原因存于error中</li>
+</ul>
+</li>
+<li><p>传入参数: </p>
+<ul>
+<li><code>sem_id</code>: 信号量集标识符</li>
+<li><code>num_sem_ops</code>: 进行操作信号量的个数, 即 sem_opa 结构变量的个数, 需大于或等于1。最常见设置此值等于1, 只完成对一个信号量的操作</li>
+<li><p><code>sem_opa</code> 指向进行操作的信号量集结构体数组的首地址</p>
+<ul>
+<li><code>semnum</code>: 信号量集合中的信号量编号, 0代表第1个信号量</li>
+<li><code>val</code>:<ul>
+<li>若val&gt;0进行V操作信号量值加val, 表示进程释放控制的资源</li>
+<li>若val&lt;0进行P操作信号量值减val<ul>
+<li>若(semval-val)&lt;0 (semval为该信号量值) , 则调用进程阻塞, 直到资源可用; </li>
+<li>若设置 IPC_NOWAIT 不会睡眠, 进程直接返回 EAGAIN 错误</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>flag</code>:<ul>
+<li>0 设置信号量的默认操作</li>
+<li>IPC_NOWAIT 设置信号量操作不等待</li>
+<li>SEM_UNDO 选项会让内核记录一个与调用进程相关的UNDO记录, 如果该进程崩溃, 则根据这个进程的UNDO记录自动恢复相应信号量的计数值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sembuf</span> &#123;</span></span><br><span class="line">    <span class="keyword">short</span> semnum;</span><br><span class="line">    <span class="keyword">short</span> val;</span><br><span class="line">    <span class="keyword">short</span> flag;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>错误代码: </p>
+<ul>
+<li>E2BIG: 一次对信号量个数的操作超过了系统限制</li>
+<li>EACCESS: 权限不够</li>
+<li>EAGAIN: 使用了IPC_NOWAIT, 但操作不能继续进行</li>
+<li>EFAULT: sops指向的地址无效</li>
+<li>EIDRM: 信号量集已经删除</li>
+<li>EINTR: 当睡眠时接收到其他信号</li>
+<li>EINVAL: 信号量集不存在,或者semid无效</li>
+<li>ENOMEM: 使用了SEM_UNDO, 但无足够的内存创建所需的数据结构</li>
+<li>ERANGE: 信号量值超出范围</li>
+</ul>
+</li>
+</ul>
+<h3 id="semctl"><a href="#semctl" class="headerlink" title="semctl()"></a>semctl()</h3><p>作用: 直接控制信号量信息</p>
+<p>原型: </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semctl</span><span class="params">(<span class="keyword">int</span> sem_id, <span class="keyword">int</span> sem_num, <span class="keyword">int</span> command, <span class="keyword">union</span> semun arg)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>返回值: </p>
+<ul>
+<li>成功: 大于或等于0</li>
+<li>出错: -1, 错误原因存于error中</li>
+</ul>
+</li>
+<li><p>传入参数: </p>
+<ul>
+<li><code>sem_id</code>: 信号量集标识符</li>
+<li><code>sem_num</code>: 信号量集数组上的下标, 表示某一个信号量</li>
+<li><p><code>command</code>:</p>
+<ul>
+<li>IPC_STAT: 从信号量集上检索semid_ds结构, 并存到semun联合体参数的成员buf的地址中</li>
+<li>IPC_SET: 设置一个信号量集合的semid_ds结构中ipc_perm域的值, 并从semun的buf中取出值</li>
+<li>IPC_RMID: 从内核中删除信号量集合</li>
+<li>GETALL: 从信号量集合中获得所有信号量的值, 并把其整数值存到semun联合体成员的一个指针数组中</li>
+<li>GETNCNT: 返回当前等待资源的进程个数</li>
+<li>GETPID: 返回最后一个执行系统调用semop()进程的PID</li>
+<li>GETVAL: 返回信号量集合内单个信号量的值</li>
+<li>GETZCNT: 返回当前等待100%资源利用的进程个数</li>
+<li>SETALL: 与GETALL正好相反</li>
+<li><code>SETVAL</code>: 用联合体中val成员的值设置信号量集合中单个信号量的值</li>
+</ul>
+</li>
+<li><p><code>arg</code>:</p>
+<ul>
+<li><code>val</code>: SETVAL用的值</li>
+<li>semid_ds: IPC_STAT、IPC_SET用的semid_ds结构</li>
+<li>array: SETALL、GETALL用的数组值</li>
+<li>seminfo: 为控制IPC_INFO提供的缓存<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> semun &#123;</span><br><span class="line">    <span class="keyword">short</span> val;          </span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">semid_ds</span>* <span class="title">buf</span>;</span></span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">short</span>* <span class="built_in">array</span>; </span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">seminfo</span> *<span class="title">buf</span>;</span></span><br><span class="line">        &#125;arg;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>错误代码: </p>
+<ul>
+<li>EACCESS: 权限不够</li>
+<li>EFAULT: arg指向的地址无效</li>
+<li>EIDRM: 信号量集已经删除</li>
+<li>EINVAL: 信号量集不存在, 或者semid无效</li>
+<li>EPERM: 进程有效用户没有cmd的权限</li>
+<li>ERANGE: 信号量值超出范围</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>以下代码用 C 语言实现，并在 Linux 环境下运行。</p>
+<h3 id="Linux-信号量实现"><a href="#Linux-信号量实现" class="headerlink" title="Linux 信号量实现"></a>Linux 信号量实现</h3><p>初始化一个数量为 5 的信号量集，定义信号量集初始化、删除、更改信号量集中某个信号量的值，以及P(s)和 V(s)操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// semaph.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N_SEM 5 <span class="comment">// 信号量集中信号量的数目</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init_semaphore</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 初始化信号量集</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">detruire_semaphore</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 删除信号量集</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">val_sem</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>; <span class="comment">// 更改信号量集中某个信号量的值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">P</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">V</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// semaph.c</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">"semaph.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> semid = <span class="number">-1</span>; <span class="comment">// 信号量集标识符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// struct sembuf &#123;short semnum; short val; short flag;&#125;;</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">sembuf</span> </span></span><br><span class="line"><span class="class">    <span class="title">sops_p</span> = &#123;</span><span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;,</span><br><span class="line">    sops_v = &#123;<span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> semun</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init_semaphore</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">union</span> semun arg0;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(semid != <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"init_semaphore: Semaphores deja initialises\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>( (semid = semget(IPC_PRIVATE, N_SEM, <span class="number">0600</span>)) == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"init_semaphore/semget: Echec %d\n"</span>, errno);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	arg0.val = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N_SEM; i++)</span><br><span class="line">		<span class="keyword">if</span>( (semctl(semid, i, SETVAL, arg0)) == <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"init_semaphore/semctl: Echec\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">detruire_semaphore</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> retour;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(semid == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"detruire_semaphore: semaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    retour = semctl(semid, <span class="number">0</span>, IPC_RMID, <span class="number">0</span>);</span><br><span class="line">	semid = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> retour;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">val_sem</span><span class="params">(<span class="keyword">int</span> sem, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> semun arg0;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(semid == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"val_sem: Semaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(sem &lt; <span class="number">0</span> || sem &gt;=N_SEM)&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"val_sem: Num de semaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	arg0.val = val;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> semctl(semid, sem, SETVAL, arg0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">P</span><span class="params">(<span class="keyword">int</span> sem)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(semid == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"P: Sémaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(sem &lt; <span class="number">0</span> || sem &gt;=N_SEM)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"P: Numéro de sémaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	sops_p.sem_num = sem;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> semop(semid, &amp;sops_p, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">V</span><span class="params">(<span class="keyword">int</span> sem)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(semid == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"V: Semaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(sem &lt; <span class="number">0</span> || sem &gt;=N_SEM)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"V: Num de semaphore inexistant\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sops_v.sem_num = sem;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> semop(semid, &amp;sops_v, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TODO</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"> <i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/javaprojet-01/" rel="next" title="SR03 PROJET MVC(P1) - DAO">
+                <i class="fa fa-chevron-left"></i> SR03 PROJET MVC(P1) - DAO
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yanyan NIE" />
+            
+              <p class="site-author-name" itemprop="name">Yanyan NIE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YanyanNIE" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yanyan_nie" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://facebook.com/yanyan.nie.946" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:nieyanyan.syoco@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Site Access
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.root-me.org/?lang=en#" title="Root Me" target="_blank">Root Me</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码临界区"><span class="nav-number">1.1.</span> <span class="nav-text">代码临界区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典问题"><span class="nav-number">2.</span> <span class="nav-text">经典问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哲学家进餐问题"><span class="nav-number">2.1.</span> <span class="nav-text">哲学家进餐问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者-读者问题"><span class="nav-number">2.2.</span> <span class="nav-text">作者-读者问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">算法 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法-2"><span class="nav-number">2.2.2.</span> <span class="nav-text">算法 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法-3"><span class="nav-number">2.2.3.</span> <span class="nav-text">算法 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法-4"><span class="nav-number">2.2.4.</span> <span class="nav-text">算法 4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者-消费者问题"><span class="nav-number">2.3.</span> <span class="nav-text">生产者-消费者问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-信号量接口"><span class="nav-number">3.</span> <span class="nav-text">Linux 信号量接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#semget"><span class="nav-number">3.1.</span> <span class="nav-text">semget()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semop"><span class="nav-number">3.2.</span> <span class="nav-text">semop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semctl"><span class="nav-number">3.3.</span> <span class="nav-text">semctl()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-信号量实现"><span class="nav-number">4.1.</span> <span class="nav-text">Linux 信号量实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanyan NIE</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  -->
+
+
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> total
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5ctOlCB3P2wccSY5cq5VAL99-gzGzoHsz',
+        appKey: 'IFNf4fFm9whRJLaAOUbh636F',
+        placeholder: 'Add your comments',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

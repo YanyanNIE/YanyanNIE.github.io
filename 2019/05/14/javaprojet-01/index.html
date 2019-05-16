@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/14/javaprojet-01/sr03_p_sql_users.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/14/javaprojet-01/sr03_p_login.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/14/javaprojet-01/sr03_p_checklogin.png">
-<meta property="og:updated_time" content="2019-05-14T09:51:29.115Z">
+<meta property="og:updated_time" content="2019-05-15T09:03:08.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SR03 PROJET MVC(P1) - DAO">
 <meta name="twitter:description" content="Modélisation conceptuelle de données avec UMLRappel  de description fonctionnelle« Utilisateur » : Acteur pouvant accéder à la plate-forme d’évaluation des compétences.   Il existe 2 types d’utilisate">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">Modified&#58;</span>
               
-              <time title="Modified" itemprop="dateModified" datetime="2019-05-14T11:51:29+02:00">
-                2019-05-14
+              <time title="Modified" itemprop="dateModified" datetime="2019-05-15T11:03:08+02:00">
+                2019-05-15
               </time>
             
           </span>
@@ -406,7 +406,7 @@
                   <span class="post-meta-item-text">  &asymp;</span>
                 
                 <span title=" ">
-                  6
+                  7
                 </span>
               
             </div>
@@ -485,30 +485,8 @@
 |   |--dbConfig.properties
 |   |--ConnSQL.java
 </code></pre><h3 id="Codes-de-classe-User"><a href="#Codes-de-classe-User" class="headerlink" title="Codes de classe User"></a>Codes de classe User</h3><p>&lt;User.java&gt;</p>
-<pre><code>public class User {
-    private String login;
-    ...
-    public User() {    
-    }
-
-    public User(String login, String pwd, String fname, String lname, 
-            String identity, String society, String phone, Date cdate, String stat) {
-        this.login = login;
-        …...
-    }
-
-    // methods of get
-    public String getLogin() {
-        return login;
-    }
-    …...
-    // methods of set
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    …...
-}
-</code></pre><h3 id="Connexion-entre-JAVA-et-SQL"><a href="#Connexion-entre-JAVA-et-SQL" class="headerlink" title="Connexion entre JAVA et SQL"></a>Connexion entre JAVA et SQL</h3><p>&lt;dbConfig.properties&gt;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String login;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;	</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String login, String pwd, String fname, String lname, </span></span></span><br><span class="line"><span class="function"><span class="params">            String identity, String society, String phone, Date cdate, String stat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.login = login;</span><br><span class="line">        …...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// methods of get</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> login;</span><br><span class="line">    &#125;</span><br><span class="line">    …...</span><br><span class="line">    <span class="comment">// methods of set</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLogin</span><span class="params">(String login)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.login = login;</span><br><span class="line">    &#125;</span><br><span class="line">    …...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Connexion-entre-JAVA-et-SQL"><a href="#Connexion-entre-JAVA-et-SQL" class="headerlink" title="Connexion entre JAVA et SQL"></a>Connexion entre JAVA et SQL</h3><p>&lt;dbConfig.properties&gt;</p>
 <p>On crée un file afin de stocker les paramètres pour connecter SQL. Il est plus pratique pour la gestion.</p>
 <pre><code>jdbc.url=jdbc:mysql://localhost/sr02
 jdbc.username=sr02
@@ -521,96 +499,11 @@ jdbc.driver=com.mysql.cj.jdbc.Driver
 <li>Déconnecter le sql</li>
 </ul>
 <p>Il suffit d’appeler les deux fonctions lorsque le traitement.</p>
-<pre><code>public class ConnSQL {
-    public static String URL;
-    public static String USERNAME;
-    public static String PASSWORD;
-    public static String DRIVER;
-    private static ResourceBundle rb = ResourceBundle.getBundle(&quot;util.dbConfig&quot;);
-
-    private ConnSQL(){}
-
-    // bind data
-    static{
-        URL = rb.getString(&quot;jdbc.url&quot;);
-        USERNAME = rb.getString(&quot;jdbc.username&quot;);
-        PASSWORD = rb.getString(&quot;jdbc.password&quot;);
-        DRIVER = rb.getString(&quot;jdbc.driver&quot;);
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    // connection
-    public static Connection getConnection(){
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(&quot;Fail:connexion!&quot;);
-        }
-        return conn;
-    }
-
-    // disconnection
-    public static void close(ResultSet rs,Statement stat,Connection conn){
-            try {
-                if(rs!=null)rs.close();
-                if(stat!=null)stat.close();
-                if(conn!=null)conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    }
-}
-</code></pre><h3 id="Realisation-de-DAO-Interface-et-implementation"><a href="#Realisation-de-DAO-Interface-et-implementation" class="headerlink" title="Réalisation de DAO - Interface et implémentation"></a>Réalisation de DAO - Interface et implémentation</h3><h4 id="Interface-de-UserDAO"><a href="#Interface-de-UserDAO" class="headerlink" title="Interface de UserDAO"></a>Interface de UserDAO</h4><p>&lt;UserDAO.java&gt;</p>
-<pre><code>public interface UserDAO {
-    public List&lt;User&gt; findAll() throws SQLException;
-    public boolean add(User u) throws SQLException;
-    public boolean delete(String login) throws SQLException;
-    public User findByLogin(String login) throws SQLException;
-}
-</code></pre><h4 id="Implementation-de-UserDAO-exemple-sur-findByLogin"><a href="#Implementation-de-UserDAO-exemple-sur-findByLogin" class="headerlink" title="Implémentation de UserDAO - exemple sur findByLogin()"></a>Implémentation de UserDAO - exemple sur findByLogin()</h4><p>&lt;UserDAOImpl.java&gt;</p>
-<pre><code>public class UserDAOImpl implements UserDAO{
-            …..
-        @Override
-    public User findByLogin(String login) throws SQLException{
-        User u = new User();
-        String sql = &quot;select * from users where login = ?&quot;;
-        Connection conn = null;
-        PreparedStatement pstem = null;
-        ResultSet res = null;
-        try {    
-            conn = ConnSQL.getConnection();
-                    pstem = conn.prepareStatement(sql);
-                    pstem.setString(1, login);
-            res = pstem.executeQuery();
-            System.out.println(&quot;UserDAOImpl.findByLogin()&quot;);
-            if(res.next()){
-                u.setLogin(res.getString(&quot;login&quot;));
-                u.setPwd(res.getString(&quot;pwd&quot;));
-                u.setFname(res.getString(&quot;fname&quot;));
-                u.setLname(res.getString(&quot;lname&quot;));
-                u.setIdentity(res.getString(&quot;ident&quot;));
-                u.setSociety(res.getString(&quot;society&quot;));
-                u.setPhone(res.getString(&quot;phone&quot;));
-                u.setCdate(res.getDate(&quot;cdate&quot;));
-                u.setStat(res.getString(&quot;stat&quot;));
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-            throw new SQLException(&quot;Echec:DELETE&quot;);
-        }finally{
-            ConnSQL.close(null,pstem,conn);
-        }
-                ConnSQL.close(res,pstem,conn);
-        return u;
-    } 
-        …...
-}
-</code></pre><h4 id="Teste-findByLogin-par-login-dans-le-server"><a href="#Teste-findByLogin-par-login-dans-le-server" class="headerlink" title="Teste findByLogin() par login dans le server"></a>Teste findByLogin() par login dans le server</h4><p><img src="/2019/05/14/javaprojet-01/sr03_p_sql_users.png" alt="Users stocké dans mySQL"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnSQL</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String URL;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String USERNAME;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String PASSWORD;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String DRIVER;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ResourceBundle rb = ResourceBundle.getBundle(<span class="string">"util.dbConfig"</span>);</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ConnSQL</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// bind data</span></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        URL = rb.getString(<span class="string">"jdbc.url"</span>);</span><br><span class="line">        USERNAME = rb.getString(<span class="string">"jdbc.username"</span>);</span><br><span class="line">        PASSWORD = rb.getString(<span class="string">"jdbc.password"</span>);</span><br><span class="line">        DRIVER = rb.getString(<span class="string">"jdbc.driver"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(DRIVER);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// connection</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Connection conn = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">"Fail:connexion!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// disconnection</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(ResultSet rs,Statement stat,Connection conn)</span></span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(rs!=<span class="keyword">null</span>)rs.close();</span><br><span class="line">                <span class="keyword">if</span>(stat!=<span class="keyword">null</span>)stat.close();</span><br><span class="line">                <span class="keyword">if</span>(conn!=<span class="keyword">null</span>)conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Realisation-de-DAO-Interface-et-implementation"><a href="#Realisation-de-DAO-Interface-et-implementation" class="headerlink" title="Réalisation de DAO - Interface et implémentation"></a>Réalisation de DAO - Interface et implémentation</h3><h4 id="Interface-de-UserDAO"><a href="#Interface-de-UserDAO" class="headerlink" title="Interface de UserDAO"></a>Interface de UserDAO</h4><p>&lt;UserDAO.java&gt;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDAO</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(User u)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">(String login)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findByLogin</span><span class="params">(String login)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Implementation-de-UserDAO-exemple-sur-findByLogin"><a href="#Implementation-de-UserDAO-exemple-sur-findByLogin" class="headerlink" title="Implémentation de UserDAO - exemple sur findByLogin()"></a>Implémentation de UserDAO - exemple sur findByLogin()</h4><p>&lt;UserDAOImpl.java&gt;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDAOImpl</span> <span class="keyword">implements</span> <span class="title">UserDAO</span></span>&#123;</span><br><span class="line">            …..</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findByLogin</span><span class="params">(String login)</span> <span class="keyword">throws</span> SQLException</span>&#123;</span><br><span class="line">        User u = <span class="keyword">new</span> User();</span><br><span class="line">        String sql = <span class="string">"select * from users where login = ?"</span>;</span><br><span class="line">        Connection conn = <span class="keyword">null</span>;</span><br><span class="line">        PreparedStatement pstem = <span class="keyword">null</span>;</span><br><span class="line">        ResultSet res = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;	</span><br><span class="line">            conn = ConnSQL.getConnection();</span><br><span class="line">                    pstem = conn.prepareStatement(sql);</span><br><span class="line">                    pstem.setString(<span class="number">1</span>, login);</span><br><span class="line">            res = pstem.executeQuery();</span><br><span class="line">            System.out.println(<span class="string">"UserDAOImpl.findByLogin()"</span>);</span><br><span class="line">            <span class="keyword">if</span>(res.next())&#123;</span><br><span class="line">                u.setLogin(res.getString(<span class="string">"login"</span>));</span><br><span class="line">                u.setPwd(res.getString(<span class="string">"pwd"</span>));</span><br><span class="line">                u.setFname(res.getString(<span class="string">"fname"</span>));</span><br><span class="line">                u.setLname(res.getString(<span class="string">"lname"</span>));</span><br><span class="line">                u.setIdentity(res.getString(<span class="string">"ident"</span>));</span><br><span class="line">                u.setSociety(res.getString(<span class="string">"society"</span>));</span><br><span class="line">                u.setPhone(res.getString(<span class="string">"phone"</span>));</span><br><span class="line">                u.setCdate(res.getDate(<span class="string">"cdate"</span>));</span><br><span class="line">                u.setStat(res.getString(<span class="string">"stat"</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Echec:DELETE"</span>);</span><br><span class="line">        &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">            ConnSQL.close(<span class="keyword">null</span>,pstem,conn);</span><br><span class="line">        &#125;</span><br><span class="line">                ConnSQL.close(res,pstem,conn);</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125; </span><br><span class="line">        …...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Teste-findByLogin-par-login-dans-le-server"><a href="#Teste-findByLogin-par-login-dans-le-server" class="headerlink" title="Teste findByLogin() par login dans le server"></a>Teste findByLogin() par login dans le server</h4><p><img src="/2019/05/14/javaprojet-01/sr03_p_sql_users.png" alt="Users stocké dans mySQL"></p>
 <p>On utilise une compte d’administrateur pour tester: <a href="mailto:alex.z@gmail.com" target="_blank" rel="noopener">alex.z@gmail.com</a>. </p>
 <p><img src="/2019/05/14/javaprojet-01/sr03_p_login.png" alt="Page de login"></p>
 <p><img src="/2019/05/14/javaprojet-01/sr03_p_checklogin.png" alt="Page admin"></p>
@@ -660,8 +553,8 @@ jdbc.driver=com.mysql.cj.jdbc.Driver
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/mac-ntfs/" rel="next" title="解决 mac 接入移动硬盘不能写问题">
-                <i class="fa fa-chevron-left"></i> 解决 mac 接入移动硬盘不能写问题
+              <a href="/2019/05/04/conda-cases/" rel="next" title="conda 使用">
+                <i class="fa fa-chevron-left"></i> conda 使用
               </a>
             
           </div>
@@ -669,6 +562,10 @@ jdbc.driver=com.mysql.cj.jdbc.Driver
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/16/linux-sem/" rel="prev" title="linux 进程间通信-信号量">
+                linux 进程间通信-信号量 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -752,7 +649,7 @@ jdbc.driver=com.mysql.cj.jdbc.Driver
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -774,7 +671,7 @@ jdbc.driver=com.mysql.cj.jdbc.Driver
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
