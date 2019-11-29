@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en,zh-Hans,fr-FR,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32world.png?v=5.1.4">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo NEXT 主题的应用">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/config-hexo/index.html">
+<meta property="og:site_name" content="Ninon&#39;s">
+<meta property="og:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/end_passage.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/part_article.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/poweredby_code.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/poweredby.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/social.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/social_ui.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/leancloud-inscription.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/leancloud-app.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/23/config-hexo/leancloud-idkey.png">
+<meta property="og:updated_time" content="2019-11-29T09:23:55.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo NEXT 主题的应用">
+<meta name="twitter:description" content="写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 /blog/ 下. 网站配置更换主题刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next. 首先克隆你想要更换的主题到 /blog/themes/nex">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/23/config-hexo/end_passage.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/config-hexo/"/>
+
+
+
+
+
+  <title>Hexo NEXT 主题的应用 | Ninon's</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ninon's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">to be continued</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/config-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanyan NIE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ninon's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo NEXT 主题的应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2018-05-23T09:17:29+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2019-11-29T17:23:55+08:00">
+                2019-11-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/config/" itemprop="url" rel="index">
+                    <span itemprop="name">config</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/23/config-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/23/config-hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> &#58;</span>
+                
+                <span title=" ">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">  &asymp;</span>
+                
+                <span title=" ">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写在前面: 本网站的搭建基础是 Gitpage 和 Hexo, 使用的是 next 主题风格. 本篇记录一下作者在个性化该主题时的一些操作. 作者的博客内容存储在目录 <code>/blog/</code> 下.</p>
+<h1 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h1><h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>刚刚用 Gitpage 和 Hexo 设置好个人网站时, 网站的默认风格是 landscape, 这时我想要更换主题风格为 next.</p>
+<p>首先克隆你想要更换的主题到 <code>/blog/themes/next</code> 目录:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>注意以上命令行是在目录 <code>/blog/</code> 下执行的. 你也可以直接切换到目录 <code>/blog/themes/</code> 下, 然后执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next next</span><br></pre></td></tr></table></figure>
+<p>其中 <code>next</code> 是你存储在本地中克隆下来的主题的名字, 默认跟主题原名保持一致.</p>
+<p>之后在 <code>/blog/_config.yml</code> (网站的基本配置文件)中, 变更主题为新主题, 变更后代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<h2 id="管理博文图片"><a href="#管理博文图片" class="headerlink" title="管理博文图片"></a>管理博文图片</h2><p>我们在写博文时, 不可避免地要插入一些图片, 那么如何对这些图片进行管理呢?</p>
+<p>hexo 创建的新博文保存在 <code>/blog/source/_posts/</code>下. 我们可以通过一些设置, 使得在新建博文 <code>NEW_ARTICLE.md</code> 的同时, 也会在相同目录下创建一个同名文件夹 <code>NEW_ARTICLE</code>来存储博文中用到的图片.</p>
+<p>首先在目录 <code>/blog/</code> 下, 执行下面命令安装插件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>插件安装成功后, 在网站基本配置文件 <code>/blog/_config.yml</code> 中, 修改参数如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+<p>这时,我们编辑博文时, 就可以将博文中用到的图片放在同名的文件夹下.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo n NEW_ARTICLE : 创建一个新博文</span><br><span class="line">![](NEW_ARTICLE/FIGURE_NAME.png) : 在博文中插入图片的格式:</span><br></pre></td></tr></table></figure>
+<h1 id="博文"><a href="#博文" class="headerlink" title="博文"></a>博文</h1><h2 id="添加博文结束标志"><a href="#添加博文结束标志" class="headerlink" title="添加博文结束标志"></a>添加博文结束标志</h2><p>在每篇博文结束的地方, 作者想要添加一个结束标识 <code>-------------E N D-------------</code>.</p>
+<p>对下面这个文件进行修改 <code>/blog/themes/next/layout/_macro/passage_end_tag.swig</code>, 如果 <code>passage_end_tag.swig</code> 文件不存在, 请自行在相应目录下创建该文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch passage_end_tag.swig</span><br></pre></td></tr></table></figure>
+<p>在文件中加入以下内容: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:14px;&quot;&gt;-------------E N D-------------&lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>接着打开文件 <code>\themes\next\layout\_macro\post.swig</code>, 在 <code>post-body</code> 之后， <code>post-footer</code> 之前添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">     &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>最后打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 在末尾添加:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 博文末尾添加结束标志</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+<p>设置好之后的效果如下图所示:<br><img src="/2018/05/23/config-hexo/end_passage.png" alt="博文结束标识效果图"></p>
+<h2 id="改变博文底部-tags-显示格式"><a href="#改变博文底部-tags-显示格式" class="headerlink" title="改变博文底部 tags 显示格式"></a>改变博文底部 tags 显示格式</h2><p>next 主题博文底部 tags 默认显示为 <code>#TAGS_NAME</code>, 上面那张效果图中的 tags 显示格式是作者修改后的效果.</p>
+<p>打开文件 <code>/themes/next/layout/_macro/post.swig</code>, 修改下面相应代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;# &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>修改后的代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt; &lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h1><h2 id="首页文章添加阴影效果"><a href="#首页文章添加阴影效果" class="headerlink" title="首页文章添加阴影效果"></a>首页文章添加阴影效果</h2><p>打开文件 <code>/blog/themes/next/source/css/_custom/custom.styl</code>, 修改相应代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.post &#123;</span><br><span class="line">   margin-top: 60px;</span><br><span class="line">   margin-bottom: 60px;</span><br><span class="line">   padding: 25px;</span><br><span class="line">   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);</span><br><span class="line">   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="设置首页文章仅显示部分内容"><a href="#设置首页文章仅显示部分内容" class="headerlink" title="设置首页文章仅显示部分内容"></a>设置首页文章仅显示部分内容</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 更改相应代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Automatically Excerpt. Not recommend.</span><br><span class="line"># Please use &lt;!-- more --&gt; in the post to control excerpt accurately.</span><br><span class="line">auto_excerpt:</span><br><span class="line">  enable: false</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+<p>更改后代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Automatically Excerpt. Not recommend.</span><br><span class="line"># Please use &lt;!-- more --&gt; in the post to control excerpt accurately.</span><br><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+<p>修改后主页文章显示效果图如下:<br><img src="/2018/05/23/config-hexo/part_article.png" alt=""></p>
+<h2 id="隐藏底部的-‘powered-by’-和-‘theme’"><a href="#隐藏底部的-‘powered-by’-和-‘theme’" class="headerlink" title="隐藏底部的 ‘powered by’ 和 ‘theme’"></a>隐藏底部的 ‘powered by’ 和 ‘theme’</h2><p>打开文件 <code>/blog/themes/next/layout/_partials/footer.swig</code>, 将下图所示的代码部分用 <code>&lt;!-- --&gt;</code> 隐藏或直接删除:<br><img src="/2018/05/23/config-hexo/poweredby_code.png" alt=""></p>
+<p>更改后底部显示的效果图:<br><img src="/2018/05/23/config-hexo/poweredby.png" alt=""></p>
+<h2 id="首页导航栏添加内容"><a href="#首页导航栏添加内容" class="headerlink" title="首页导航栏添加内容"></a>首页导航栏添加内容</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 将你想要添加的导航前的 <code>#</code> 删掉:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  #about: /about/ || user</span><br><span class="line">  #tags: /tags/ || tags</span><br><span class="line">  #categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure>
+<p>添加about, tags 和 categories 后的代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure></p>
+<p>注意添加页面时请先确保该页面存在, 如果不存在, 可参照 <code>关于 next 主题侧边栏中的的 tags 和 categories 无法点击的问题</code> 解决.</p>
+<h2 id="底部添加访问量"><a href="#底部添加访问量" class="headerlink" title="底部添加访问量"></a>底部添加访问量</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 修改代码如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Show PV/UV of the website/page with busuanzi.</span><br><span class="line"># Get more information on http://ibruce.info/2015/04/04/busuanzi/</span><br><span class="line">busuanzi_count:</span><br><span class="line">  # count values only if the other configs are false</span><br><span class="line">  enable: true</span><br><span class="line">  # custom uv span for the whole site</span><br><span class="line">  site_uv: true</span><br><span class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_uv_footer:</span><br><span class="line">  # custom pv span for the whole site</span><br><span class="line">  site_pv: true</span><br><span class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_pv_footer:</span><br><span class="line">  # custom pv span for one page only</span><br><span class="line">  page_pv: true</span><br><span class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt;</span><br><span class="line">  page_pv_footer:</span><br></pre></td></tr></table></figure>
+<h1 id="侧栏"><a href="#侧栏" class="headerlink" title="侧栏"></a>侧栏</h1><h2 id="添加侧栏头像"><a href="#添加侧栏头像" class="headerlink" title="添加侧栏头像"></a>添加侧栏头像</h2><p>侧栏中的图片默认保存在目录 <code>/blog/themes/next/source/imgs</code> 下. 将你想要显示的图片保存在该目录下, 默认图片名为 <code>avatar.jpg</code>.</p>
+<p>打开主题配置文件<code>/blog/themes/themes/next/_config.yml</code>, 修改相应代码如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/avatar.jpg</span><br></pre></td></tr></table></figure>
+<h2 id="侧栏中添加社交网络链接"><a href="#侧栏中添加社交网络链接" class="headerlink" title="侧栏中添加社交网络链接"></a>侧栏中添加社交网络链接</h2><p>打开主题配置文件 <code>/blog/themes/next/_config.yml</code>, 将你想要添加的社交链接前的 <code>#</code> 去掉, 注意更改链接为你的社交账号链接, 下图为作者更改后的代码:<br><img src="/2018/05/23/config-hexo/social.png" alt=""></p>
+<p>侧栏社交链接效果如下图:<br><img src="/2018/05/23/config-hexo/social_ui.png" alt=""></p>
+<h2 id="侧边栏中的的-tags-和-categories-无法点击的问题"><a href="#侧边栏中的的-tags-和-categories-无法点击的问题" class="headerlink" title="侧边栏中的的 tags 和 categories 无法点击的问题"></a>侧边栏中的的 tags 和 categories 无法点击的问题</h2><p>首先在 <code>blog/source/</code>目录下,查看是否存在 <code>tags/</code> 和 <code>categories/</code> 目录. 如果没有, 自行创建:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br><span class="line">hexo new page &quot;categories&quot;</span><br></pre></td></tr></table></figure>
+<p>在 <code>blogs/source/tags/index.md</code>中, 添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>添加后代码显示如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2018-07-20 15:18:47</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">layout: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<h1 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h1><h2 id="hexo-草稿使用"><a href="#hexo-草稿使用" class="headerlink" title="hexo 草稿使用"></a>hexo 草稿使用</h2><p>在一片博文被发表前, 可能需要经历多次修改. 在博文最终版没有敲定之前, 我们并不想它在网页中显示出来, Hexo 提供草稿编辑模式. 草稿博文默认保存在 <code>blogs/source/_drafts/</code> 目录下, 草稿的模板是提前定义好的，在 <code>blogs/scaffolds</code> 目录中.</p>
+<p>在使用 <code>hexo g</code> 命令生成静态文件的时候, 是不会将草稿也生成的. 如果想要查看草稿的效果, 可以在启动本地服务的时候增加一个参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
+<p>或者在网站配置文件 <code>blogs/_config.yml</code> 中进行配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_drafts: true</span><br></pre></td></tr></table></figure>
+<p>这样每次启动本地服务的时候，都会渲染编写的草稿.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft TEST : 创建一个博文草稿</span><br><span class="line">hexo publish post TEST : 发布草稿 TEST 到 _posts 中</span><br></pre></td></tr></table></figure>
+<p>post模板也是在 <code>blogs/scaffolds</code> 目录中定义好的, 发布命令执行后, _drafts目录中的草稿也就被移除掉了.</p>
+<p>注意 <code>hexo publish</code> 命令默认使用post模板, <title> 是指文章的标题, 而不是加后缀的文件名.</title></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="部署到-GitHub-时无法上传-CNAME-文件"><a href="#部署到-GitHub-时无法上传-CNAME-文件" class="headerlink" title="部署到 GitHub 时无法上传 CNAME 文件"></a>部署到 GitHub 时无法上传 CNAME 文件</h2><p>在使用<code>hexo d</code>进行部署时，发现放在 <code>source</code>下的<code>CNAME</code>文件没有一同部署到 git 仓库。</p>
+<p>一番研究后，发现需要在部署前先清理一下:<code>hexo clean</code>,这个操作会把 <code>public</code>文件夹全部删除。之后再进行部署，它会把 source 文件中的东西全部放入 public 文件夹再上传。</p>
+<h1 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h1><p>本站使用的 valine 评论系统是放在 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud</a> 上的。因此首先需要创建一个 leancloud 账号。</p>
+<p>进入网站后，点击右上角控制台注册或登录账号：</p>
+<p><img src="/2018/05/23/config-hexo/leancloud-inscription.png" alt=""></p>
+<p>创建一个应用：</p>
+<p><img src="/2018/05/23/config-hexo/leancloud-app.png" alt=""></p>
+<p>在设置里面，获得 <strong>APP ID</strong> 和 <strong>APP KEY</strong>：</p>
+<p><img src="/2018/05/23/config-hexo/leancloud-idkey.png" alt=""></p>
+<p>接下来更改 next 主题配置文件 <code>/blog/themes/next/_config.yml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid: xxxx # your leancloud application appid</span><br><span class="line">  appkey: xxxx # your leancloud application appkey</span><br><span class="line">  notify: false # mail notifier , https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: Add your comments # comment box placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick,mail,link # custom comment header</span><br><span class="line">  pageSize: 10 # pagination size</span><br></pre></td></tr></table></figure>
+<h1 id="Referances"><a href="#Referances" class="headerlink" title="Référances"></a>Référances</h1><ul>
+<li><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="noopener">hexo博客图片问题</a></li>
+<li><a href="https://segmentfault.com/a/1190000009544924" target="_blank" rel="noopener">hexo的next主题个性化配置教程</a></li>
+<li><a href="http://www.cubemister.com/Blog/2016/10/04/Hexo-%E7%BC%96%E5%86%99%E5%92%8C%E5%8F%91%E5%B8%83%E8%8D%89%E7%A8%BF/" target="_blank" rel="noopener">Hexo - 编写和发布草稿</a></li>
+<li><a href="https://www.bluelzy.com/articles/use_valine_for_your_blog.html" target="_blank" rel="noopener">为你的Hexo加上评论系统-Valine</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"> <i class="fa fa-tag"></i> Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/19/config-githubpages-hexo/" rel="next" title="comment construire votre web personnel avec GitHub Pages et Hexo">
+                <i class="fa fa-chevron-left"></i> comment construire votre web personnel avec GitHub Pages et Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/11/case-git/" rel="prev" title="git 命令行使用纪录">
+                git 命令行使用纪录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yanyan NIE" />
+            
+              <p class="site-author-name" itemprop="name">Yanyan NIE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YanyanNIE" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yanyan_nie" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://facebook.com/yanyan.nie.946" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:nieyanyan.syoco@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Site Access
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.root-me.org/?lang=en#" title="Root Me" target="_blank">Root Me</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站配置"><span class="nav-number">1.</span> <span class="nav-text">网站配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.1.</span> <span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博文图片"><span class="nav-number">1.2.</span> <span class="nav-text">管理博文图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博文"><span class="nav-number">2.</span> <span class="nav-text">博文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加博文结束标志"><span class="nav-number">2.1.</span> <span class="nav-text">添加博文结束标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变博文底部-tags-显示格式"><span class="nav-number">2.2.</span> <span class="nav-text">改变博文底部 tags 显示格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#首页"><span class="nav-number">3.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页文章添加阴影效果"><span class="nav-number">3.1.</span> <span class="nav-text">首页文章添加阴影效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置首页文章仅显示部分内容"><span class="nav-number">3.2.</span> <span class="nav-text">设置首页文章仅显示部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏底部的-‘powered-by’-和-‘theme’"><span class="nav-number">3.3.</span> <span class="nav-text">隐藏底部的 ‘powered by’ 和 ‘theme’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页导航栏添加内容"><span class="nav-number">3.4.</span> <span class="nav-text">首页导航栏添加内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部添加访问量"><span class="nav-number">3.5.</span> <span class="nav-text">底部添加访问量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#侧栏"><span class="nav-number">4.</span> <span class="nav-text">侧栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加侧栏头像"><span class="nav-number">4.1.</span> <span class="nav-text">添加侧栏头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧栏中添加社交网络链接"><span class="nav-number">4.2.</span> <span class="nav-text">侧栏中添加社交网络链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏中的的-tags-和-categories-无法点击的问题"><span class="nav-number">4.3.</span> <span class="nav-text">侧边栏中的的 tags 和 categories 无法点击的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑"><span class="nav-number">5.</span> <span class="nav-text">编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-草稿使用"><span class="nav-number">5.1.</span> <span class="nav-text">hexo 草稿使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到-GitHub-时无法上传-CNAME-文件"><span class="nav-number">5.2.</span> <span class="nav-text">部署到 GitHub 时无法上传 CNAME 文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论系统"><span class="nav-number">6.</span> <span class="nav-text">评论系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Referances"><span class="nav-number">7.</span> <span class="nav-text">Référances</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanyan NIE</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  -->
+
+
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> total
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5ctOlCB3P2wccSY5cq5VAL99-gzGzoHsz',
+        appKey: 'IFNf4fFm9whRJLaAOUbh636F',
+        placeholder: 'Add your comments',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
