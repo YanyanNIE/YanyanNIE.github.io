@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Wireshark," />
 
 
 
@@ -77,17 +77,21 @@
 
 
 
-<meta name="description" content="不忘初心，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About author of Ninon&#39;s">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="测试环境 处于同一局域网下的两台 ubuntu server 虚拟机 vb1 和 vb2 vb1 上安装 tcpdump 和 nc, 开放 ssh 服务，拥有 root 权限 宿主机上安装 wireshark  操作步骤 虚拟机 vb1 上，通过 tcpdump 抓包并发送到宿主机的 3000 端口：sudo tcpdump -s0 -n -U -w - -I INTERFACE ’not por">
+<meta name="keywords" content="Wireshark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过 netcat 使用 wireshark 进行远程流量监测">
+<meta property="og:url" content="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/index.html">
 <meta property="og:site_name" content="Ninon&#39;s">
-<meta property="og:description" content="不忘初心，方得始终">
+<meta property="og:description" content="测试环境 处于同一局域网下的两台 ubuntu server 虚拟机 vb1 和 vb2 vb1 上安装 tcpdump 和 nc, 开放 ssh 服务，拥有 root 权限 宿主机上安装 wireshark  操作步骤 虚拟机 vb1 上，通过 tcpdump 抓包并发送到宿主机的 3000 端口：sudo tcpdump -s0 -n -U -w - -I INTERFACE ’not por">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-08T15:13:02.144Z">
+<meta property="og:image" content="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/remote-packet-capture-vb1.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/remote-packet-capture-wireshark.png">
+<meta property="og:updated_time" content="2019-12-20T08:51:01.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About author of Ninon&#39;s">
-<meta name="twitter:description" content="不忘初心，方得始终">
+<meta name="twitter:title" content="通过 netcat 使用 wireshark 进行远程流量监测">
+<meta name="twitter:description" content="测试环境 处于同一局域网下的两台 ubuntu server 虚拟机 vb1 和 vb2 vb1 上安装 tcpdump 和 nc, 开放 ssh 服务，拥有 root 权限 宿主机上安装 wireshark  操作步骤 虚拟机 vb1 上，通过 tcpdump 抓包并发送到宿主机的 3000 端口：sudo tcpdump -s0 -n -U -w - -I INTERFACE ’not por">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/remote-packet-capture-vb1.png">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/"/>
 
 
 
 
 
-  <title>About author of Ninon's | Ninon's</title>
+  <title>通过 netcat 使用 wireshark 进行远程流量监测 | Ninon's</title>
   
 
 
@@ -249,33 +253,265 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/20/practice-wireshark-remote-packet-capture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanyan NIE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ninon's">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">About author of Ninon's</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h4 id="不忘初心，方得始终"><a href="#不忘初心，方得始终" class="headerlink" title="不忘初心，方得始终"></a>不忘初心，方得始终</h4>
+          <h1 class="post-title" itemprop="name headline">通过 netcat 使用 wireshark 进行远程流量监测</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2019-12-20T16:30:44+08:00">
+                2019-12-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2019-12-20T16:51:01+08:00">
+                2019-12-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/practice/" itemprop="url" rel="index">
+                    <span itemprop="name">practice</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/20/practice-wireshark-remote-packet-capture/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/20/practice-wireshark-remote-packet-capture/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> &#58;</span>
+                
+                <span title=" ">
+                  429
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">  &asymp;</span>
+                
+                <span title=" ">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>处于同一局域网下的两台 ubuntu server 虚拟机 vb1 和 vb2</li>
+<li>vb1 上安装 tcpdump 和 nc, 开放 ssh 服务，拥有 root 权限</li>
+<li>宿主机上安装 wireshark</li>
+</ul>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol>
+<li>虚拟机 vb1 上，通过 tcpdump 抓包并发送到宿主机的 3000 端口：<code>sudo tcpdump -s0 -n -U -w - -I INTERFACE ’not port 3000’| nc @IP_HOTE 3000</code><ul>
+<li>-n 不对地址进行数字到名字的转换</li>
+<li>-i 指定网络接口</li>
+<li>-X 当分析和打印时, tcpdump 会打印每个包的头部数据, 同时会以16进制和ASCII码形式打印出每个包的数据(但不包括连接层的头部)</li>
+<li>-s snaplen 设置tcpdump的数据包抓取长度为snaplen, 如果不设置默认将会是68字节；s0 可以抓到完整的数据包</li>
+<li>-U 使得当tcpdump在使用-w 选项时, 其文件写入与包的保存同步.(nt: 即, 当每个数据包被保存时, 它将及时被写入文件中,而不是等文件的输出缓冲已满时才真正写入此文件)</li>
+<li>-w 把包数据直接写入文件而不进行分析和打印输出. 这些包数据可在随后通过-r 选项来重新读入并进行分析和打印.</li>
+<li>在 GNU 指令中，如果单独使用 - 符号，不加任何该加的文件名称时，代表”标准输入”的意思</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2019/12/20/practice-wireshark-remote-packet-capture/remote-packet-capture-vb1.png" alt=""></p>
+<ol start="2">
+<li><p>宿主机上监听 3000 端口并发送给 wireshark ：<code>nc -l 3000|wireshark -k -i -</code></p>
+<ul>
+<li>-l, 处于侦听模式。指定该参数，则意味着nc被当作server，侦听并接受连接，而非向其它地址发起连接。</li>
+</ul>
+</li>
+<li><p>在虚拟机 vb2 上向 vb1 发起 ssh 连接：<code>ssh @IP_V1</code>, wireshark 抓包结果如下所示： </p>
+</li>
+</ol>
+<p><img src="/2019/12/20/practice-wireshark-remote-packet-capture/remote-packet-capture-wireshark.png" alt=""></p>
+
       
     </div>
     
     
     
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Wireshark/" rel="tag"> <i class="fa fa-tag"></i> Wireshark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/20/practice-pentest-dvwa-cmdi/" rel="next" title="DVWA CMD 注入测试过程">
+                <i class="fa fa-chevron-left"></i> DVWA CMD 注入测试过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/23/installation-docker-dvwa/" rel="prev" title="MacOS 下 Docker 安装 DVWA 环境过程">
+                MacOS 下 Docker 安装 DVWA 环境过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -437,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#不忘初心，方得始终"><span class="nav-number">1.</span> <span class="nav-text">不忘初心，方得始终</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试环境"><span class="nav-number">1.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作步骤"><span class="nav-number">2.</span> <span class="nav-text">操作步骤</span></a></li></ol></div>
             
 
           </div>
