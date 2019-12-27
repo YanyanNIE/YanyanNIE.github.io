@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en,zh-Hans,fr-FR,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32world.png?v=5.1.4">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="docker,OWASP Mutillidae," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装环境： MacOS Catalina 10.15.1 Docker version 19.03.2 Docker image mysql:5.6 Docker image ubuntu:latest  准备工作OWASP Mutillidae 是一个免费的，可进行安全测试和入侵的Web应用程序。 运行 OWASP Mutillidae web 需要配置 PHP+Apache+MySQL 环境。">
+<meta name="keywords" content="docker,OWASP Mutillidae">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 安装 OWASP Mutillidae 环境过程">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/installation-docker-owaspmutillidae/index.html">
+<meta property="og:site_name" content="Ninon&#39;s">
+<meta property="og:description" content="安装环境： MacOS Catalina 10.15.1 Docker version 19.03.2 Docker image mysql:5.6 Docker image ubuntu:latest  准备工作OWASP Mutillidae 是一个免费的，可进行安全测试和入侵的Web应用程序。 运行 OWASP Mutillidae web 需要配置 PHP+Apache+MySQL 环境。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/installation-docker-owaspmutillidae/owaspm-apachepage.png">
+<meta property="og:updated_time" content="2019-12-27T05:28:46.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 安装 OWASP Mutillidae 环境过程">
+<meta name="twitter:description" content="安装环境： MacOS Catalina 10.15.1 Docker version 19.03.2 Docker image mysql:5.6 Docker image ubuntu:latest  准备工作OWASP Mutillidae 是一个免费的，可进行安全测试和入侵的Web应用程序。 运行 OWASP Mutillidae web 需要配置 PHP+Apache+MySQL 环境。">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/installation-docker-owaspmutillidae/owaspm-apachepage.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/26/installation-docker-owaspmutillidae/"/>
+
+
+
+
+
+  <title>Docker 安装 OWASP Mutillidae 环境过程 | Ninon's</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ninon's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">to be continued</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/installation-docker-owaspmutillidae/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanyan NIE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ninon's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker 安装 OWASP Mutillidae 环境过程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Created" itemprop="dateCreated datePublished" datetime="2019-12-26T21:30:09+08:00">
+                2019-12-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified&#58;</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2019-12-27T13:28:46+08:00">
+                2019-12-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/installation/" itemprop="url" rel="index">
+                    <span itemprop="name">installation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/26/installation-docker-owaspmutillidae/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/26/installation-docker-owaspmutillidae/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> &#58;</span>
+                
+                <span title=" ">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">  &asymp;</span>
+                
+                <span title=" ">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装环境："><a href="#安装环境：" class="headerlink" title="安装环境："></a>安装环境：</h2><ul>
+<li>MacOS Catalina 10.15.1</li>
+<li>Docker version 19.03.2</li>
+<li>Docker image mysql:5.6</li>
+<li>Docker image ubuntu:latest</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>OWASP Mutillidae 是一个免费的，可进行安全测试和入侵的Web应用程序。</p>
+<p>运行 OWASP Mutillidae web 需要配置 PHP+Apache+MySQL 环境。</p>
+<p>此次安装将基于 docker镜像 Ubuntu:latest 和 mysql:5.6。在 ubuntu:latest 中需要先安装 apache2 和 php5。其中，OWASP Mutillidae 将直接下载到主机上，在运行容器时映射到 docker 容器的相应目录中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 拉取所需镜像</span><br><span class="line">docker pull ubuntu</span><br><span class="line">docker pull mysql:5.6</span><br></pre></td></tr></table></figure>
+<p>在主机上切换到相应目录下(我的目录在<code>~/myRepo/</code>), 下载<a href="https://github.com/webpwnized/mutillidae" target="_blank" rel="noopener">OWASP Mutillidae</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/webpwnized/mutillidae.git</span><br></pre></td></tr></table></figure>
+<h2 id="配置-apache2-php5"><a href="#配置-apache2-php5" class="headerlink" title="配置  apache2+php5"></a>配置  apache2+php5</h2><h3 id="容器基本配置"><a href="#容器基本配置" class="headerlink" title="容器基本配置"></a>容器基本配置</h3><p>下面运行一个 Ubuntu容器并配置</p>
+<p>可以使用<code>docker images</code>查看拉取的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-it \</span><br><span class="line">-p 8081:80 \</span><br><span class="line">--name mutillidae \</span><br><span class="line">ubuntu</span><br></pre></td></tr></table></figure>
+<p>上述命令将以 ubuntu:latest 镜像创建一个名为 mutillidae 的容器，以交互方式进入到容器中并将容器的 80 端口映射到主机的 8081 端口上；一般选择映射到 8080 端口，但我主机的 8080 端口已被占用。</p>
+<p>安装要用的 linux 工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 更新资源库</span><br><span class="line">apt-get update</span><br><span class="line"></span><br><span class="line"># 安装 vim</span><br><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
+<p>接下来修改源列表<code>/etc/apt/source.list</code>,添加下面的内容，不然 php5 下载会不成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/source.list</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
+<p>保存修改退出后，更新源列表<code>apt-get update</code></p>
+<h3 id="安装php5"><a href="#安装php5" class="headerlink" title="安装php5"></a>安装php5</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 安装 php5 </span><br><span class="line">apt-get install php5</span><br><span class="line"></span><br><span class="line"># 安装 apache php5 支持模块</span><br><span class="line">apt-get install libapache2-mod-php5</span><br><span class="line"></span><br><span class="line"># php5-gd 模块</span><br><span class="line">apt-get install php5-gd</span><br><span class="line"></span><br><span class="line"># 查看php5-curl是否已安装</span><br><span class="line">dpkg -l | grep &apos;php5-curl&apos;</span><br><span class="line"></span><br><span class="line"># 如果未安装则进行安装</span><br><span class="line">apt-get install php5-curl</span><br><span class="line"></span><br><span class="line"># 确保 extension_dir存在，并且包含curl.so</span><br><span class="line">php -i | grep extension_dir</span><br><span class="line"></span><br><span class="line"># 安装mysql数据库扩展</span><br><span class="line">apt-get install php5-mysql</span><br></pre></td></tr></table></figure>
+<p>确保 <code>/etc/php5/mods-available/curl.ini</code>文件存在，且内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">; configuration for php CURL module</span><br><span class="line">; priority=20</span><br><span class="line">extension=curl.so</span><br></pre></td></tr></table></figure>
+<h3 id="安装-apache2"><a href="#安装-apache2" class="headerlink" title="安装 apache2"></a>安装 apache2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装 apache2</span><br><span class="line">apt-get install apache2</span><br><span class="line"></span><br><span class="line"># 启动 apache2 服务</span><br><span class="line">/etc/init.d/apache2 start</span><br><span class="line"></span><br><span class="line"># 查看进程</span><br><span class="line">pa aux</span><br></pre></td></tr></table></figure>
+<p>在主机上打开网址<code>http://127.0.0.1:8081/</code>，测试服务是否正常</p>
+<p><img src="/2019/12/26/installation-docker-owaspmutillidae/owaspm-apachepage.png" alt=""></p>
+<h2 id="保存容器为镜像"><a href="#保存容器为镜像" class="headerlink" title="保存容器为镜像"></a>保存容器为镜像</h2><p>退出并停止容器<code>docker container stop CONTAINER_NAME/CONTAINER_ID</code>,并将刚刚配置好的容器保存为镜像，供下次直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 格式</span><br><span class="line">docker commit CONTAINER_NAME NEW_IMAGE_NAME:TAG</span><br><span class="line"> </span><br><span class="line"># 将 mutillidae 容器保存为 karhis/mutillidae-env:v1 镜像</span><br><span class="line">docker commit mutillidae karhis/mutillidae-env:v1</span><br></pre></td></tr></table></figure>
+<h2 id="配置-mysql"><a href="#配置-mysql" class="headerlink" title="配置 mysql"></a>配置 mysql</h2><p>为了防止 mysql 容器停止或删除后数据丢失，创建主机到容器的文件<code>data_mutillidae</code>映射来保存数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql_owaspm \</span><br><span class="line">-v PATH/data_mutillidae:/var/lib/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=&quot;root&quot; \</span><br><span class="line">-d \</span><br><span class="line">mysql:5.6</span><br></pre></td></tr></table></figure>
+<p>上述命令将在后台运行一个名为 mysql_owaspm 的mysql容器，并设置mysql root用户的登录密码为 root</p>
+<p>接下来修改 OWASP Mutillidae 配置文件，使其与配置的mysql容器保持一致</p>
+<p>cd 到你下载的 <code>PATH/mutillidae/includes/</code> 路径下，修改 database 配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 复制文件 database-config.inc 为 database-config.php</span><br><span class="line">cp database-config.inc database-config.php</span><br></pre></td></tr></table></figure>
+<p>修改文件<code>vim database-config.php</code>,修改后的内容如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">define(<span class="string">'DB_HOST'</span>, <span class="string">'mysql_owaspm'</span>);</span><br><span class="line">define(<span class="string">'DB_USERNAME'</span>, <span class="string">'root'</span>);</span><br><span class="line">define(<span class="string">'DB_PASSWORD'</span>, <span class="string">'root'</span>);</span><br><span class="line">define(<span class="string">'DB_NAME'</span>, <span class="string">'mutillidae'</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="运行-OWASP-Mutillidae"><a href="#运行-OWASP-Mutillidae" class="headerlink" title="运行 OWASP Mutillidae"></a>运行 OWASP Mutillidae</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--rm \</span><br><span class="line">-it \</span><br><span class="line">--link mysql_owaspm:mysql \</span><br><span class="line">-p 8081:80 \</span><br><span class="line">-p 8082:8080 \</span><br><span class="line">-v PATH/mutillidae:/var/www/html  \</span><br><span class="line">--name mutillidae1 \</span><br><span class="line">karhis/mutillidae-env:v1</span><br></pre></td></tr></table></figure>
+<p>上述命令以刚刚保存的<code>karhis/mutillidae-env:v1</code>镜像生成一个容器，并指定了 mysql 容器</p>
+<p>进入容器后，需要手动运行 apache2 服务<code>/etc/init.d/apache2 start</code>（TODO:配置启动容器时apache2服务自动运行）</p>
+<h2 id="将镜像上传到仓库"><a href="#将镜像上传到仓库" class="headerlink" title="将镜像上传到仓库"></a>将镜像上传到仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push karhis/mutillidae-env:v1</span><br></pre></td></tr></table></figure>
+<p>镜像说明</p>
+<ul>
+<li>这版的镜像比上述配置步骤多安装了一个 mysql(探索遗留，懒得重新配置容器了…)</li>
+<li><p>根目录下创建有<code>start.sh</code>，内容如下，以启动 apache2 服务</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">/etc/init.d/apache2 start</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>有需要的可以直接拉取镜像使用，也可以自己进行配置。镜像仓库连接为: <a href="https://hub.docker.com/repository/docker/karhis/mutillidae-env" target="_blank" rel="noopener">karhis/mutillidae-env</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull karhis/mutillidae-env:v1</span><br></pre></td></tr></table></figure>
+<p>完啦~生活愉快~</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://raoul1996.github.io/2018/05/27/how-to-install-dvwa.html" target="_blank" rel="noopener">使用 Docker 安装 DVWA 漏洞测试环境</a></li>
+<li><a href="https://www.fujieace.com/penetration-test/mutillidae.html" target="_blank" rel="noopener">OWASP Mutillidae下载、安装、使用（常用web漏洞环境搭建）教程</a></li>
+<li><a href="https://www.cnblogs.com/dunkbird/p/5702284.html" target="_blank" rel="noopener">Ubuntu+Apache+PHP+Mysql环境搭建（完整版）</a></li>
+<li><a href="https://www.cnblogs.com/xiwang/articles/4493372.html" target="_blank" rel="noopener">AH00558: apache2: Could not reliably determine the server’s fully qualified domain name, using 127.0.1.1.</a></li>
+<li><a href="https://stackoverflow.com/questions/40241845/the-apache2-configtest-failed-segmentation-fault-core-dumped-action-configte" target="_blank" rel="noopener">The apache2 configtest failed. Segmentation fault (core dumped) Action ‘configtest’ failed</a></li>
+<li><a href="https://blog.csdn.net/weixin_40816738/article/details/90280644" target="_blank" rel="noopener">Docker 容器导出为镜像</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------E N D-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"> <i class="fa fa-tag"></i> docker</a>
+          
+            <a href="/tags/OWASP-Mutillidae/" rel="tag"> <i class="fa fa-tag"></i> OWASP Mutillidae</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/26/practice-pentest-dvwa-weaksessionids/" rel="next" title="DVWA 弱 session IDs 测试过程">
+                <i class="fa fa-chevron-left"></i> DVWA 弱 session IDs 测试过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yanyan NIE" />
+            
+              <p class="site-author-name" itemprop="name">Yanyan NIE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YanyanNIE" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yanyan_nie" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://facebook.com/yanyan.nie.946" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:nieyanyan.syoco@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Site Access
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.root-me.org/?lang=en#" title="Root Me" target="_blank">Root Me</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装环境："><span class="nav-number">1.</span> <span class="nav-text">安装环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-apache2-php5"><span class="nav-number">3.</span> <span class="nav-text">配置  apache2+php5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容器基本配置"><span class="nav-number">3.1.</span> <span class="nav-text">容器基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php5"><span class="nav-number">3.2.</span> <span class="nav-text">安装php5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-apache2"><span class="nav-number">3.3.</span> <span class="nav-text">安装 apache2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存容器为镜像"><span class="nav-number">4.</span> <span class="nav-text">保存容器为镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-mysql"><span class="nav-number">5.</span> <span class="nav-text">配置 mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行-OWASP-Mutillidae"><span class="nav-number">6.</span> <span class="nav-text">运行 OWASP Mutillidae</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将镜像上传到仓库"><span class="nav-number">7.</span> <span class="nav-text">将镜像上传到仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">8.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanyan NIE</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  -->
+
+
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> total
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '5ctOlCB3P2wccSY5cq5VAL99-gzGzoHsz',
+        appKey: 'IFNf4fFm9whRJLaAOUbh636F',
+        placeholder: 'Add your comments',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
